@@ -75,7 +75,6 @@ function XPHandler(State){
     let currentLvl = State.player.playerLevel;
     State.player.playerLevel = Math.floor(Math.log2(State.player.playerXP));
     if(currentLvl < State.player.playerLevel){
-        State.player.damage = 0;
         State.player.health = State.player.maxHealth;
     }
 };

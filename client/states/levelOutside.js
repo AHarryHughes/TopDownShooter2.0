@@ -7,15 +7,12 @@ LevelOutside = function () { };
 //*******************************************************************************CREATE*******************************
 LevelOutside.prototype.create = function () {
     //*******************************************************************************LOAD GAME*************************
-    console.log("client.load() in create", client.load());
-    client.load();
     LevelOutside.wave = game.saveState.wave;
 
 
     //*******************************************************************************MAP*************************
     map = this.add.tilemap("outside");
     map.addTilesetImage('large-map', 'large-map');
-
 
 
     let layer = map.createLayer('Base');
@@ -106,11 +103,6 @@ LevelOutside.prototype.create = function () {
     //*******************************************************************************KEYBOARD SET UP*******************************
 
 
-    //*******************************************************************************CAMERA*******************************
-    game.camera.x = game.world.centerX - game.width / 2;
-    //*******************************************************************************CAMERA*******************************
-
-
     //*******************************************************************************STAT TEXT*******************************
     LevelOutside.healthText = this.add.text(0, 0, "health", { fontSize: '32px', fill: '#fff' });
     LevelOutside.healthText.fixedToCamera = true;
@@ -127,6 +119,7 @@ LevelOutside.prototype.create = function () {
     //Set text for house
     //Add some color??
     //*******************************************************************************STAT TEXT*******************************
+
 
 };
 

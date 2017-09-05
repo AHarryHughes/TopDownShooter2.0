@@ -132,7 +132,7 @@ server.listen(8081,function(){ // Listens to port 8081
 io.sockets.on('connection', function(socket){
     socket.emit('test', {data: "connected"});
 
-    socket.on('save', function(data) {
+    socket.on('save', async function(data) {
         console.log("at save server");
         Users.findByIdAndUpdate(session.user._id, {game: data});
     });

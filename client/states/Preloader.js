@@ -27,6 +27,7 @@ Preloader.prototype.preload = function () {
     this.load.image('bullet', './client/assets/sprites/bullet.png');
     this.load.image('fog-of-war', blackURI);
 
+    client.load();
 
     // Tiled exported tilemap
     // this.load.tilemap('outside', './client/assets/maps/level-outside.json', null, Phaser.Tilemap.TILED_JSON);
