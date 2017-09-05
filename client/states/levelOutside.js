@@ -11,8 +11,6 @@ LevelOutside.prototype.create = function () {
     map = this.add.tilemap("outside");
     map.addTilesetImage('large-map', 'large-map');
 
-
-
     let layer = map.createLayer('Base');
     layer.resizeWorld();
     let collisionLayer = map.createLayer('Collision');
@@ -20,7 +18,6 @@ LevelOutside.prototype.create = function () {
     collisionLayer.visible = false;
     map.setCollisionByExclusion([], true, LevelOutside.collisionLayer);
     collisionLayer.resizeWorld();
-
 
     // map = game.add.tilemap("outside");
     // map.addTilesetImage('outside-tileset', 'outside-tileset');

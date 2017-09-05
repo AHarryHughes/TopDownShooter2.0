@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2561b46e-e1e2-4b26-979d-8539591397ba" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/sprites/Player.js" afterPath="$PROJECT_DIR$/client/sprites/Player.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/states/MainMenu.js" afterPath="$PROJECT_DIR$/client/states/MainMenu.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/sprites/Boss.js" afterPath="$PROJECT_DIR$/client/sprites/Boss.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/states/levelOutside.js" afterPath="$PROJECT_DIR$/client/states/levelOutside.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -19,41 +16,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="levelOutside.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="levelOutside.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/states/levelOutside.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2156">
-              <caret line="118" column="45" lean-forward="false" selection-start-line="118" selection-start-column="45" selection-end-line="118" selection-end-column="45" />
+            <state relative-caret-position="-270">
+              <caret line="44" column="25" lean-forward="false" selection-start-line="44" selection-start-column="25" selection-end-line="44" selection-end-column="25" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Merc.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/sprites/Merc.js">
+      <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-680">
-              <caret line="3" column="22" lean-forward="false" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="game.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/game.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Boss.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/sprites/Boss.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="576">
-              <caret line="50" column="21" lean-forward="false" selection-start-line="50" selection-start-column="21" selection-end-line="50" selection-end-column="21" />
+            <state relative-caret-position="420">
+              <caret line="28" column="22" lean-forward="true" selection-start-line="28" selection-start-column="22" selection-end-line="28" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -62,28 +39,18 @@
       <file leaf-file-name="Enemy.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/sprites/Enemy.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-229">
-              <caret line="30" column="59" lean-forward="true" selection-start-line="30" selection-start-column="59" selection-end-line="30" selection-end-column="59" />
+            <state relative-caret-position="7">
+              <caret line="2" column="52" lean-forward="false" selection-start-line="2" selection-start-column="52" selection-end-line="2" selection-end-column="52" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Player.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/sprites/Player.js">
+      <file leaf-file-name="Boss.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/sprites/Boss.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="274">
-              <caret line="77" column="5" lean-forward="true" selection-start-line="77" selection-start-column="5" selection-end-line="77" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MainMenu.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/client/states/MainMenu.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="6" column="126" lean-forward="false" selection-start-line="6" selection-start-column="126" selection-end-line="6" selection-end-column="126" />
+            <state relative-caret-position="228">
+              <caret line="50" column="21" lean-forward="false" selection-start-line="50" selection-start-column="21" selection-end-line="50" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -162,11 +129,11 @@
         <option value="$PROJECT_DIR$/client/assets/css/style.css" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/client/sprites/Boss.js" />
-        <option value="$PROJECT_DIR$/client/states/levelOutside.js" />
         <option value="$PROJECT_DIR$/client/sprites/Enemy.js" />
         <option value="$PROJECT_DIR$/client/sprites/Merc.js" />
         <option value="$PROJECT_DIR$/client/sprites/Player.js" />
         <option value="$PROJECT_DIR$/client/states/MainMenu.js" />
+        <option value="$PROJECT_DIR$/client/states/levelOutside.js" />
       </list>
     </option>
   </component>
@@ -298,7 +265,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="77150000" />
+    <option name="totallyTimeSpent" value="78327000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -381,7 +348,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1110">
           <caret line="74" column="46" lean-forward="true" selection-start-line="74" selection-start-column="46" selection-end-line="74" selection-end-column="46" />
-          <folding />
+          <folding>
+            <marker date="1504631153000" expanded="true" signature="23:657" ph="{...}" />
+            <marker date="1504631153000" expanded="true" signature="2242:2288" ph="{...}" />
+            <marker date="1504631153000" expanded="true" signature="2242:2387" ph="{...}" />
+            <marker date="1504631153000" expanded="true" signature="2324:2385" ph="{...}" />
+            <marker date="1504631153000" expanded="true" signature="2415:2649" ph="{...}" />
+            <marker date="1504631153000" expanded="true" signature="2586:2647" ph="{...}" />
+            <marker date="1504631153000" expanded="true" signature="2688:2937" ph="{...}" />
+            <marker date="1504631153000" expanded="true" signature="2727:2935" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -450,7 +426,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="54" lean-forward="true" selection-start-line="2" selection-start-column="54" selection-end-line="2" selection-end-column="54" />
-          <folding />
+          <folding>
+            <marker date="1504631153000" expanded="true" signature="23:657" ph="{...}" />
+            <marker date="1504631153000" expanded="true" signature="2242:2288" ph="{...}" />
+            <marker date="1504631153000" expanded="true" signature="2242:2387" ph="{...}" />
+            <marker date="1504631153000" expanded="true" signature="2324:2385" ph="{...}" />
+            <marker date="1504631153000" expanded="true" signature="2415:2649" ph="{...}" />
+            <marker date="1504631153000" expanded="true" signature="2586:2647" ph="{...}" />
+            <marker date="1504631153000" expanded="true" signature="2688:2937" ph="{...}" />
+            <marker date="1504631153000" expanded="true" signature="2727:2935" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -584,14 +569,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="41">
-          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/sprites/NPC.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -601,8 +578,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/client.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="16" lean-forward="true" selection-start-line="0" selection-start-column="16" selection-end-line="0" selection-end-column="16" />
+        <state relative-caret-position="15">
+          <caret line="1" column="29" lean-forward="true" selection-start-line="1" selection-start-column="29" selection-end-line="1" selection-end-column="29" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -621,14 +599,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/states/levelOutside.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2156">
-          <caret line="118" column="45" lean-forward="false" selection-start-line="118" selection-start-column="45" selection-end-line="118" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/sprites/Merc.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-680">
@@ -637,27 +607,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/sprites/Boss.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="576">
-          <caret line="50" column="21" lean-forward="false" selection-start-line="50" selection-start-column="21" selection-end-line="50" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/sprites/Enemy.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-229">
-          <caret line="30" column="59" lean-forward="true" selection-start-line="30" selection-start-column="59" selection-end-line="30" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/sprites/Player.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="77" column="5" lean-forward="true" selection-start-line="77" selection-start-column="5" selection-end-line="77" selection-end-column="5" />
-          <folding />
+        <state relative-caret-position="1125">
+          <caret line="75" column="46" lean-forward="false" selection-start-line="75" selection-start-column="46" selection-end-line="75" selection-end-column="46" />
+          <folding>
+            <marker date="1504631153000" expanded="true" signature="23:657" ph="{...}" />
+            <marker date="1504631153000" expanded="true" signature="2242:2288" ph="{...}" />
+            <marker date="1504631153000" expanded="true" signature="2242:2387" ph="{...}" />
+            <marker date="1504631153000" expanded="true" signature="2324:2385" ph="{...}" />
+            <marker date="1504631153000" expanded="true" signature="2415:2649" ph="{...}" />
+            <marker date="1504631153000" expanded="true" signature="2586:2647" ph="{...}" />
+            <marker date="1504631153000" expanded="true" signature="2688:2937" ph="{...}" />
+            <marker date="1504631153000" expanded="true" signature="2727:2935" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -671,8 +634,40 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/states/MainMenu.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="6" column="126" lean-forward="false" selection-start-line="6" selection-start-column="126" selection-end-line="6" selection-end-column="126" />
+        <state relative-caret-position="0">
+          <caret line="0" column="24" lean-forward="false" selection-start-line="0" selection-start-column="24" selection-end-line="0" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="28" column="22" lean-forward="true" selection-start-line="28" selection-start-column="22" selection-end-line="28" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/sprites/Boss.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="50" column="21" lean-forward="false" selection-start-line="50" selection-start-column="21" selection-end-line="50" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/sprites/Enemy.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7">
+          <caret line="2" column="52" lean-forward="false" selection-start-line="2" selection-start-column="52" selection-end-line="2" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/states/levelOutside.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-270">
+          <caret line="44" column="25" lean-forward="false" selection-start-line="44" selection-start-column="25" selection-end-line="44" selection-end-column="25" />
           <folding />
         </state>
       </provider>
