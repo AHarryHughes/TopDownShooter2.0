@@ -4,7 +4,7 @@ MainMenu.prototype.create = function(){
     background = game.add.sprite(0,0);
     background.width = 800;
     background.height = 800;
-    filter = game.add.filter('Fire', 800,800);
+    filter = game.add.filter('Fire', window.innerWidth * window.devicePixelRatio, window.innerHeight * window.devicePixelRatio);
     filter.alpha = 0.0;
     background.filters = [filter];
 
