@@ -42,12 +42,19 @@ function Boss (State, spawnPoints) {
         State.player.damage(5);
     };
 
+    State.prototype.bossmeleeMerc = function (merc) {
+        game.camera.shake(0.005, 500);
+        merc.damage(5);
+    };
+
     State.prototype.bossUpdate = function (boss) {
-        boss.body.collideWorldBounds = true;
-        boss.body.velocity.x = 0;
-        boss.body.velocity.y = 0;
-        boss.rotation = game.physics.arcade.angleToXY(boss, State.player.x, State.player.y);
-        bossShootPlayer(State, boss);
+        if(boss.alive) {
+            boss.body.collideWorldBounds = true;
+            boss.body.velocity.x = 0;
+            boss.body.velocity.y = 0;
+            boss.rotation = game.physics.arcade.angleToXY(boss, State.player.x, State.player.y);
+            bossShootPlayer(State, boss);
+        }
     };
 
 }

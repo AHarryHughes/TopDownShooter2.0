@@ -116,9 +116,12 @@ LevelOutside.prototype.create = function () {
     LevelOutside.wave = 1;
     LevelOutside.waveText = this.add.text(620, 0, "wave", { fontSize: '32px', fill: '#fff' });
     LevelOutside.waveText.fixedToCamera = true;
-    LevelOutside.mercText = this.add.text(620, 30, "merc", { fontSize: '32px', fill: '#fff' });
+    LevelOutside.mercText = this.add.text(1200, 0, "merc", { fontSize: '32px', fill: '#fff' });
     LevelOutside.mercText.fixedToCamera = true;
+    LevelOutside.bossText = this.add.text(620, 30, "boss", { fontSize: '32px', fill: '#fff' });
+    LevelOutside.bossText.fixedToCamera = true;
     //Set text for house
+    //Add some color??
     //*******************************************************************************STAT TEXT*******************************
 
 };
@@ -133,6 +136,7 @@ LevelOutside.prototype.update = function () {
     LevelOutside.XPText.text = 'Player XP: ' + LevelOutside.player.playerXP + "/" + Math.pow(2, (LevelOutside.player.playerLevel+1));
     LevelOutside.waveText.text = 'Wave: ' + LevelOutside.wave;
     LevelOutside.mercText.text = 'Mercs: ' + (LevelOutside.mercs.length - LevelOutside.mercs.countDead()) + "/" + LevelOutside.mercs.length;
+    LevelOutside.bossText.text = 'Boss Health: ' + LevelOutside.boss.health + "/" + LevelOutside.boss.maxHealth;
     //Update text for house
     //*******************************************************************************SETTING STATS REANDER*******************************
 
@@ -149,31 +153,42 @@ LevelOutside.prototype.update = function () {
     game.physics.arcade.collide(LevelOutside.enemies, LevelOutside.collisionLayer);
     game.physics.arcade.collide(LevelOutside.mercs, LevelOutside.collisionLayer);
     game.physics.arcade.collide(LevelOutside.shotgunEnemies, LevelOutside.collisionLayer);
+    game.physics.arcade.collide(LevelOutside.boss, LevelOutside.collisionLayer);
 
     game.physics.arcade.collide(LevelOutside.playerBullets, LevelOutside.collisionLayer, function(bullet){bullet.kill();});
     game.physics.arcade.collide(LevelOutside.shotgunEnemyBullets, LevelOutside.collisionLayer, function(bullet){bullet.kill();});
     game.physics.arcade.collide(LevelOutside.mercBullets, LevelOutside.collisionLayer, function(bullet){bullet.kill();});
+    game.physics.arcade.collide(LevelOutside.bossBullets, LevelOutside.collisionLayer, function(bullet){bullet.kill();});
 
     game.physics.arcade.collide(LevelOutside.enemies, LevelOutside.enemies);
     game.physics.arcade.collide(LevelOutside.enemies, LevelOutside.shotgunEnemies);
     game.physics.arcade.collide(LevelOutside.shotgunEnemies, LevelOutside.shotgunEnemies);
+    game.physics.arcade.collide(LevelOutside.boss, LevelOutside.enemies);
+    game.physics.arcade.collide(LevelOutside.boss, LevelOutside.shotgunEnemies);
     game.physics.arcade.collide(LevelOutside.mercs, LevelOutside.mercs);
-    //WHEN BOSS ADDED SET COLLIDERS FOR SPRITES AND WEAPONS, AS WELL AS SETTING COLLIDERS FOR TOWER BULLETS
+    //SETTING COLLIDERS FOR TOWER BULLETS
     //ADD COLLISION FOR THE HOUSE
     //*******************************************************************************COLLIDERS SET*******************************
 
 
     //*******************************************************************************OVERLAP TRIGGERS SET*******************************
+    //player
     game.physics.arcade.overlap(LevelOutside.playerBullets, LevelOutside.enemies, LevelOutside.prototype.enemyShot, null, LevelOutside);
     game.physics.arcade.overlap(LevelOutside.playerBullets, LevelOutside.shotgunEnemies, LevelOutside.prototype.shotgunEnemyShot, null, LevelOutside);
     game.physics.arcade.overlap(LevelOutside.enemies, LevelOutside.player, LevelOutside.prototype.meleePlayer, null, LevelOutside);
     game.physics.arcade.overlap(LevelOutside.shotgunEnemies, LevelOutside.player, LevelOutside.prototype.meleePlayer, null, LevelOutside);
     game.physics.arcade.overlap(LevelOutside.player, LevelOutside.shotgunEnemyBullets, LevelOutside.prototype.playerShot, null, LevelOutside);
+    game.physics.arcade.overlap(LevelOutside.player, LevelOutside.bossBullets, LevelOutside.prototype.playerShot, null, LevelOutside);
+    game.physics.arcade.overlap(LevelOutside.boss, LevelOutside.player, LevelOutside.prototype.bossMeleePlayer, null, LevelOutside);
+    game.physics.arcade.overlap(LevelOutside.playerBullets, LevelOutside.boss, LevelOutside.prototype.bossShot, null, LevelOutside);
     //mercs
     game.physics.arcade.overlap(LevelOutside.mercs, LevelOutside.shotgunEnemyBullets, LevelOutside.prototype.mercShot, null, LevelOutside);
     game.physics.arcade.overlap(LevelOutside.mercs, LevelOutside.enemies, LevelOutside.prototype.meleeMerc, null, LevelOutside);
     game.physics.arcade.overlap(LevelOutside.mercBullets, LevelOutside.enemies, LevelOutside.prototype.enemyShot, null, LevelOutside);
     game.physics.arcade.overlap(LevelOutside.mercBullets, LevelOutside.shotgunEnemies, LevelOutside.prototype.shotgunEnemyShot, null, LevelOutside);
+    game.physics.arcade.overlap(LevelOutside.mercs, LevelOutside.bossBullets, LevelOutside.prototype.mercShot, null, LevelOutside);
+    game.physics.arcade.overlap(LevelOutside.boss, LevelOutside.mercs, LevelOutside.prototype.bossmeleeMerc, null, LevelOutside);
+    game.physics.arcade.overlap(LevelOutside.mercBullets, LevelOutside.boss, LevelOutside.prototype.bossShot, null, LevelOutside);
     //WHEN BOSS AND MERCS ADDED SET OVERLAP FOR SPRITES AND BULLETS, AS WELL AS SETTING OVERLAPS FOR TOWER BULLETS
     //ADD OVERLAP FOR ENEMYBULLETS/ENEMIES AND THE HOUSE
     //*******************************************************************************OVERLAP TRIGGERS SET*******************************
@@ -224,10 +239,15 @@ LevelOutside.prototype.update = function () {
     LevelOutside.shotgunEnemies.forEachAlive(LevelOutside.prototype.shotgunEnemyUpdate, LevelOutside);
     //*******************************************************************************ANGLES SHOOTERS AND SENDS TO PLAYER*******************************
 
+    //*******************************************************************************BOSS UPDATE*******************************
+    LevelOutside.prototype.bossUpdate(LevelOutside.boss);
+    //*******************************************************************************BOSS UPDATE*******************************
+
 
     //*******************************************************************************MERC UPDATE*******************************
     LevelOutside.shotgunEnemies.forEachAlive(LevelOutside.prototype.mercsUpdate, LevelOutside);
     LevelOutside.enemies.forEachAlive(LevelOutside.prototype.mercsUpdate, LevelOutside);
+    if(LevelOutside.boss.alive){LevelOutside.prototype.mercsUpdate(LevelOutside.boss);}
     //*******************************************************************************MERC UPDATE*******************************
 
 

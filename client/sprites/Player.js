@@ -57,6 +57,7 @@ function shootBullet (State) {
 
 function calculateDeadEnemies(State) {
     let XPBoost = (State.enemies.countDead() * 2) + (State.shotgunEnemies.countDead() * 4);
+    if(!State.boss.alive){XPBoost += 20;}
     State.player.playerXP = State.player.playerXPStart + XPBoost;
 }
 
@@ -73,6 +74,7 @@ function XPHandler(State){
     let currentLvl = State.player.playerLevel;
     State.player.playerLevel = Math.floor(Math.log2(State.player.playerXP));
     if(currentLvl < State.player.playerLevel){
+        State.player.damage = 0;
         State.player.health = State.player.maxHealth;
     }
 };
