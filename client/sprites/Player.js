@@ -13,8 +13,8 @@ function Player (State){ //add a method to change weapon in prototype
     player.body.setSize(100, 150, 100, 50);
     game.camera.follow(player);
     player.body.collideWorldBounds = true;
-    player.playerLevel = 1;
-    player.playerXP = 1;
+    player.playerLevel = game.saveState.lvl || 1;
+    player.playerXP = game.saveState.XP || 1;
     player.playerXPStart = player.playerXP;
     player.shootTime = 0;
 
@@ -63,6 +63,7 @@ function calculateDeadEnemies(State) {
 
 function healthHandler(State){
     if (State.player.health <= 0) {
+        Client.save(game.saveState);
         game.state.start('levelHouse');
     }
     if (State.player.health <= 30) {

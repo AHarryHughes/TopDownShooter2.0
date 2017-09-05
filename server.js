@@ -129,20 +129,23 @@ server.listen(8081,function(){ // Listens to port 8081
     console.log('Listening on '+server.address().port);
 });
 
-io.sockets.on('conection', function(socket){
-    socket.on('save', save(data));
+io.sockets.on('connection', function(socket){
+    socket.emit('test', {data: "connected"});
+
+    socket.on('save', function(data) {
+        console.log("at save server");
+        Users.findByIdAndUpdate(session.user._id, {game: data});
+    });
 
     socket.on('runLoad', function(){
-        socket.emit('load', load());
+        console.log("at runload server");
+        socket.emit('load', {
+            data: session.user.game
+        });
     });
 
 
 });
 
-function save(data) {
-    Users.findByIdAndUpdate(session.user._id, {game: data});
-};
 
-function load() {
-    return session.user.game;
-};
+

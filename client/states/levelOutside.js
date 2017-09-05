@@ -7,7 +7,10 @@ LevelOutside = function () { };
 //*******************************************************************************CREATE*******************************
 LevelOutside.prototype.create = function () {
     //*******************************************************************************LOAD GAME*************************
+    console.log("client.load() in create", client.load());
     client.load();
+    LevelOutside.wave = game.saveState.wave;
+
 
     //*******************************************************************************MAP*************************
     map = this.add.tilemap("outside");
@@ -115,7 +118,6 @@ LevelOutside.prototype.create = function () {
     LevelOutside.levelText.fixedToCamera = true;
     LevelOutside.XPText = this.add.text(0, 60, "XP", { fontSize: '32px', fill: '#fff' });
     LevelOutside.XPText.fixedToCamera = true;
-    LevelOutside.wave = 1;
     LevelOutside.waveText = this.add.text(620, 0, "wave", { fontSize: '32px', fill: '#fff' });
     LevelOutside.waveText.fixedToCamera = true;
     LevelOutside.mercText = this.add.text(1200, 0, "merc", { fontSize: '32px', fill: '#fff' });
@@ -145,6 +147,7 @@ LevelOutside.prototype.update = function () {
 
     //*******************************************************************************TRIGGERS INSIDE DOOR*******************************
     if (Phaser.Rectangle.containsPoint(LevelOutside.exitRectangle, LevelOutside.player.position)) {
+        client.save(game.saveState);
         game.state.start('levelHouse');
     }
     //*******************************************************************************TRIGGERS INSIDE DOOR*******************************
@@ -267,6 +270,18 @@ LevelOutside.prototype.update = function () {
     //*******************************************************************************WAVE REFRESHING*******************************
     LevelOutside.prototype.waveHandler();
     //*******************************************************************************WAVE REFRESHING*******************************
+
+    //*******************************************************************************REFRESHING GAMESTATE*******************************
+    game.saveState = {
+        towers: [0],
+        mercs: LevelOutside.mercs.countLiving(),
+        wave: LevelOutside.wave,
+        lvl: LevelOutside.player.playerLevel,
+        XP: LevelOutside.player.playerXP,
+        weapons: [0],
+        money: 0
+    };
+    //*******************************************************************************REFRESHING GAMESTATE*******************************
 
 };
 

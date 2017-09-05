@@ -5,13 +5,20 @@ client.socket = io.connect();
 //And these should be set as method to the gameSave object
 
 client.save = function(saveState){
-    Client.socket.emit('save', saveState);
+    console.log("at save client");
+    client.socket.emit('save', saveState);
 };
 
 client.load = function(){
-    Client.socket.emit('runLoad');
+    console.log("at runload client");
+    client.socket.emit('runLoad');
 };
 
-Client.socket.on('load',function(data){
-    game.saveState = data;
+client.socket.on('load',function(data){
+    console.log("load client", data);
+    game.saveState = data.game;
+});
+
+client.socket.on('test',function(data){
+    console.log(data);
 });

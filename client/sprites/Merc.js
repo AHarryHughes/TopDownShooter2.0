@@ -1,7 +1,7 @@
 function Merc (State) {
 
     let mercs = game.add.group();
-    let mercsTotal = 1;
+    let mercsTotal = game.saveState.mercs;
     for(let i = 0; i < mercsTotal; i++){
         let merc = mercs.create(2977 + i, 1060 + i, 'player');
         merc.tint = 0x00ff00;
