@@ -105,55 +105,56 @@ function Enemies (State, spawnPoints) { // Make based on player level and add bo
         shootPlayer(State, shotgunEnemy);
     };
 
-};
+    //*******************************************************************************RANDOM SPAWN LOC SELECT*******************************
+    function chooseSpawn (spawnPoints) {
+        return spawnPoints[Math.floor(Math.random() * spawnPoints.length)];
+    };
 
-//*******************************************************************************RANDOM SPAWN LOC SELECT*******************************
-function chooseSpawn (spawnPoints) {
-    return spawnPoints[Math.floor(Math.random() * spawnPoints.length)];
-};
-
-function chasePlayer(State, enemy) {
-    if (
-        (State.player.alive && game.physics.arcade.distanceBetween(State.player, enemy) > 30) &&
-        (State.player.alive && game.physics.arcade.distanceBetween(State.player, enemy) < 600)
-    ) {
-        game.physics.arcade.moveToObject(enemy, State.player, 300);
-        enemy.animations.play('move');
-    }
-    else if (State.player.alive && game.physics.arcade.distanceBetween(State.player, enemy) <= 30) {
-        enemy.animations.play('melee');
-    }
-    else {
-        enemy.animations.play('idle');
-    }
-};
-
-function shootPlayer(State, shotgunEnemy) {
-    if (
-        (State.player.alive && game.physics.arcade.distanceBetween(State.player, shotgunEnemy) > 30) &&
-        (State.player.alive && game.physics.arcade.distanceBetween(State.player, shotgunEnemy) < 600)
-    ) {
-        game.physics.arcade.moveToObject(shotgunEnemy, State.player, 150);
-        shotgunEnemy.animations.play('move');
-    }
-    if (State.player.alive && game.physics.arcade.distanceBetween(State.player, shotgunEnemy) <= 400) {
-        shotgunEnemy.animations.play('shoot');
-        fireBullets(shotgunEnemy, State.player, State);
-    }
-    else {
-        shotgunEnemy.animations.play('idle');
-    }
-};
-
-function fireBullets (shotgunEnemy, player, State) {
-    if (game.time.now > State.shotgunEnemies.shootTime) {
-        let bullet = State.shotgunEnemyBullets.getFirstExists(false);
-        if (bullet) {
-            bullet.reset(shotgunEnemy.x, shotgunEnemy.y + 8);
-            bullet.body.velocity.x = 100;
-            State.shotgunEnemies.shootTime = game.time.now + 200;
-            bullet.rotation = game.physics.arcade.moveToObject(bullet, player, 500);
-            bullet.lifespan = 1000;
+    function chasePlayer(State, enemy) {
+        if (
+            (State.player.alive && game.physics.arcade.distanceBetween(State.player, enemy) > 30) &&
+            (State.player.alive && game.physics.arcade.distanceBetween(State.player, enemy) < 600)
+        ) {
+            game.physics.arcade.moveToObject(enemy, State.player, 300);
+            enemy.animations.play('move');
         }
-    }
+        else if (State.player.alive && game.physics.arcade.distanceBetween(State.player, enemy) <= 30) {
+            enemy.animations.play('melee');
+        }
+        else {
+            enemy.animations.play('idle');
+        }
+    };
+
+    function shootPlayer(State, shotgunEnemy) {
+        if (
+            (State.player.alive && game.physics.arcade.distanceBetween(State.player, shotgunEnemy) > 30) &&
+            (State.player.alive && game.physics.arcade.distanceBetween(State.player, shotgunEnemy) < 600)
+        ) {
+            game.physics.arcade.moveToObject(shotgunEnemy, State.player, 150);
+            shotgunEnemy.animations.play('move');
+        }
+        if (State.player.alive && game.physics.arcade.distanceBetween(State.player, shotgunEnemy) <= 400) {
+            shotgunEnemy.animations.play('shoot');
+            fireBullets(shotgunEnemy, State.player, State);
+        }
+        else {
+            shotgunEnemy.animations.play('idle');
+        }
+    };
+
+    function fireBullets (shotgunEnemy, player, State) {
+        if (game.time.now > State.shotgunEnemies.shootTime) {
+            let bullet = State.shotgunEnemyBullets.getFirstExists(false);
+            if (bullet) {
+                bullet.reset(shotgunEnemy.x, shotgunEnemy.y + 8);
+                bullet.body.velocity.x = 100;
+                State.shotgunEnemies.shootTime = game.time.now + 200;
+                bullet.rotation = game.physics.arcade.moveToObject(bullet, player, 500);
+                bullet.lifespan = 1000;
+            }
+        }
+    };
+
 };
+

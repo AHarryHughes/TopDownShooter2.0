@@ -50,3 +50,6 @@ Preloader.prototype.preload = function () {
 Preloader.prototype.create = function () {
     game.state.start('MainMenu');
 };
+
+
+module.exports = Preloader;

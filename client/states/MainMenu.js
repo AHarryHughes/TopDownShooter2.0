@@ -30,3 +30,5 @@ MainMenu.prototype.createButton = function(game,string,x,y,width,height,callback
     var text = game.add.text(button1.x,button1.y, string, {font:"14px Arial", fill:"#fff", align:"center"});
     text.anchor.setTo(0.5,0.5);
 };
+
+module.exports = MainMenu;

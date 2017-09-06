@@ -57,38 +57,40 @@ function Boss (State, spawnPoints) {
         }
     };
 
+    function chooseSpawn (spawnPoints) {
+        return spawnPoints[Math.floor(Math.random() * spawnPoints.length)];
+    };
+
+    function bossShootPlayer(State, boss) {
+        if (
+            (State.player.alive && game.physics.arcade.distanceBetween(State.player, boss) > 30) &&
+            (State.player.alive && game.physics.arcade.distanceBetween(State.player, boss) < 600)
+        ) {
+            game.physics.arcade.moveToObject(boss, State.player, 150);
+            boss.animations.play('move');
+        }
+        if (State.player.alive && game.physics.arcade.distanceBetween(State.player, boss) <= 400) {
+            boss.animations.play('shoot');
+            bossFireBullets(boss, State.player, State);
+        }
+        else {
+            boss.animations.play('idle');
+        }
+    };
+
+    function bossFireBullets (boss, player, State) {
+        if (game.time.now > boss.shootTime) {
+            let bullet = State.bossBullets.getFirstExists(false);
+            if (bullet) {
+                bullet.reset(boss.x, boss.y + 8);
+                bullet.body.velocity.x = 100;
+                State.bossBullets.shootTime = game.time.now + 200;
+                bullet.rotation = game.physics.arcade.moveToObject(bullet, player, 500);
+                bullet.lifespan = 1000;
+            }
+        }
+    };
+
+
 }
 
-function chooseSpawn (spawnPoints) {
-    return spawnPoints[Math.floor(Math.random() * spawnPoints.length)];
-};
-
-function bossShootPlayer(State, boss) {
-    if (
-        (State.player.alive && game.physics.arcade.distanceBetween(State.player, boss) > 30) &&
-        (State.player.alive && game.physics.arcade.distanceBetween(State.player, boss) < 600)
-    ) {
-        game.physics.arcade.moveToObject(boss, State.player, 150);
-        boss.animations.play('move');
-    }
-    if (State.player.alive && game.physics.arcade.distanceBetween(State.player, boss) <= 400) {
-        boss.animations.play('shoot');
-        bossFireBullets(boss, State.player, State);
-    }
-    else {
-        boss.animations.play('idle');
-    }
-};
-
-function bossFireBullets (boss, player, State) {
-    if (game.time.now > boss.shootTime) {
-        let bullet = State.bossBullets.getFirstExists(false);
-        if (bullet) {
-            bullet.reset(boss.x, boss.y + 8);
-            bullet.body.velocity.x = 100;
-            State.bossBullets.shootTime = game.time.now + 200;
-            bullet.rotation = game.physics.arcade.moveToObject(bullet, player, 500);
-            bullet.lifespan = 1000;
-        }
-    }
-};

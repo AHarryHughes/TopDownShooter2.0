@@ -38,51 +38,52 @@ function Player (State){ //add a method to change weapon in prototype
         shotgunEnemyBullet.kill();
     }
 
-};
 
-function shootBullet (State) {
-    if (game.time.now > State.player.shootTime) {
-        let bullet = State.playerBullets.getFirstExists(false);
-        if (bullet) {
-            bullet.reset(State.player.x, State.player.y);
-            bullet.body.velocity.x = 10000;
-            State.player.shootTime = game.time.now + 100;
-            bullet.rotation = game.physics.arcade.moveToPointer(bullet, 10000, game.input.activePointer, 100);
-            bullet.lifespan = 1000;
+    this.prototype.shootBullet = function (State) {
+        if (game.time.now > State.player.shootTime) {
+            let bullet = State.playerBullets.getFirstExists(false);
+            if (bullet) {
+                bullet.reset(State.player.x, State.player.y);
+                bullet.body.velocity.x = 10000;
+                State.player.shootTime = game.time.now + 100;
+                bullet.rotation = game.physics.arcade.moveToPointer(bullet, 10000, game.input.activePointer, 100);
+                bullet.lifespan = 1000;
+            }
         }
-    }
+    };
+
+
+
+    this.prototype.calculateDeadEnemies = function (State) {
+        let XPBoost = (State.enemies.countDead() * 2) + (State.shotgunEnemies.countDead() * 4);
+        if(!State.boss.alive){XPBoost += 20;}
+        State.player.playerXP = State.player.playerXPStart + XPBoost;
+    };
+
+    this.prototype.healthHandler = function (State){
+        if (State.player.health <= 0) {
+            game.state.start('levelHouse');
+        }
+        if (State.player.health <= 30) {
+            State.player.tint = Math.random() * 0xffffff;
+        }
+    };
+
+    this.prototype.XPHandler = function (State){
+        let currentLvl = State.player.playerLevel;
+        State.player.playerLevel = Math.floor(Math.log2(State.player.playerXP));
+        if(currentLvl < State.player.playerLevel){
+            State.player.health = State.player.maxHealth;
+        }
+    };
+
+    this.prototype.playerLevelUpgrades = function (State) {
+        if(State.player.playerLevel > 1) {
+            State.player.MOVE_SPEED = 500 + State.player.playerLevel * 5;
+            State.mercs.MOVE_SPEED = State.player.MOVE_SPEED;
+            State.player.maxHealth = 100 + (10 * State.player.playerLevel);
+
+        }
+    };
+
 };
-
-
-
-function calculateDeadEnemies(State) {
-    let XPBoost = (State.enemies.countDead() * 2) + (State.shotgunEnemies.countDead() * 4);
-    if(!State.boss.alive){XPBoost += 20;}
-    State.player.playerXP = State.player.playerXPStart + XPBoost;
-}
-
-function healthHandler(State){
-    if (State.player.health <= 0) {
-        game.state.start('levelHouse');
-    }
-    if (State.player.health <= 30) {
-        State.player.tint = Math.random() * 0xffffff;
-    }
-};
-
-function XPHandler(State){
-    let currentLvl = State.player.playerLevel;
-    State.player.playerLevel = Math.floor(Math.log2(State.player.playerXP));
-    if(currentLvl < State.player.playerLevel){
-        State.player.health = State.player.maxHealth;
-    }
-};
-
-function playerLevelUpgrades(State) {
-    if(State.player.playerLevel > 1) {
-        State.player.MOVE_SPEED = 500 + State.player.playerLevel * 5;
-        State.mercs.MOVE_SPEED = State.player.MOVE_SPEED;
-        State.player.maxHealth = 100 + (10 * State.player.playerLevel);
-
-    }
-}

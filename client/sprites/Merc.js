@@ -50,40 +50,42 @@ function Merc (State) {
         });
     };
 
+    function followPlayerShootEnemy(State, enemy, merc) {
+        if (
+            (merc.alive && game.physics.arcade.distanceBetween(merc, State.player) > 50)
+        ) {
+            merc.rotation = game.physics.arcade.angleToXY(merc, State.player.x, State.player.y);
+            game.physics.arcade.moveToObject(merc, State.player, merc.MOVE_SPEED);
+            merc.animations.play('move');
+        }
+        if (
+            (merc.alive && game.physics.arcade.distanceBetween(merc, enemy) <= 400)
+
+        ) {
+            merc.rotation = game.physics.arcade.angleToXY(merc, enemy.x, enemy.y);
+            merc.animations.play('move');
+            mercShoot(State, enemy, merc);
+        }
+        else {
+            merc.rotation = game.physics.arcade.angleToXY(merc, State.player.x, State.player.y);
+            merc.animations.play('idle');
+        }
+    };
+
+    function mercShoot (State, enemy, merc) {
+        if (game.time.now > State.mercs.shootTime) {
+            let bullet = State.mercBullets.getFirstExists(false);
+            if (bullet) {
+                bullet.reset(merc.x, merc.y + 8);
+                bullet.body.velocity.x = 100;
+                merc.shootTime = game.time.now + 200;
+                bullet.rotation = game.physics.arcade.moveToObject(bullet, enemy, 500);
+                bullet.lifespan = 1000;
+            }
+        }
+    };
+
 
 }
 
-function followPlayerShootEnemy(State, enemy, merc) {
-    if (
-        (merc.alive && game.physics.arcade.distanceBetween(merc, State.player) > 50)
-    ) {
-        merc.rotation = game.physics.arcade.angleToXY(merc, State.player.x, State.player.y);
-        game.physics.arcade.moveToObject(merc, State.player, merc.MOVE_SPEED);
-        merc.animations.play('move');
-    }
-    if (
-        (merc.alive && game.physics.arcade.distanceBetween(merc, enemy) <= 400)
 
-    ) {
-        merc.rotation = game.physics.arcade.angleToXY(merc, enemy.x, enemy.y);
-        merc.animations.play('move');
-        mercShoot(State, enemy, merc);
-    }
-    else {
-        merc.rotation = game.physics.arcade.angleToXY(merc, State.player.x, State.player.y);
-        merc.animations.play('idle');
-    }
-};
-
-function mercShoot (State, enemy, merc) {
-    if (game.time.now > State.mercs.shootTime) {
-        let bullet = State.mercBullets.getFirstExists(false);
-        if (bullet) {
-            bullet.reset(merc.x, merc.y + 8);
-            bullet.body.velocity.x = 100;
-            merc.shootTime = game.time.now + 200;
-            bullet.rotation = game.physics.arcade.moveToObject(bullet, enemy, 500);
-            bullet.lifespan = 1000;
-        }
-    }
-};

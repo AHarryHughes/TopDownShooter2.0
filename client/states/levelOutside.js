@@ -1,3 +1,8 @@
+const Boss = require('../sprites/Boss');
+const Enemy = require('../sprites/Enemy');
+const Merc = require('../sprites/Merc');
+const Player = require('../sprites/Player');
+
 //*******************************************************************************INIT FUNC*******************************
 LevelOutside = function () { };
 
@@ -68,7 +73,7 @@ LevelOutside.prototype.create = function () {
     let spawn4 = map.objects.meta.find(o => o.name == 'spawn4');
     LevelOutside.spawnPoints.push(spawn1, spawn2, spawn3, spawn4);
     Boss (LevelOutside, LevelOutside.spawnPoints);
-    Enemies(LevelOutside, LevelOutside.spawnPoints);
+    Enemy(LevelOutside, LevelOutside.spawnPoints);
     //*******************************************************************************SPRITES*******************************
 
 
@@ -249,13 +254,13 @@ LevelOutside.prototype.update = function () {
 
 
     //*******************************************************************************XP/HEALTH/LEVEL HANDLERS*******************************
-    calculateDeadEnemies(LevelOutside);
+    Player.prototype.calculateDeadEnemies(LevelOutside);
 
-    healthHandler(LevelOutside);
+    Player.prototype.healthHandler(LevelOutside);
 
-    XPHandler(LevelOutside);
+    Player.prototype.XPHandler(LevelOutside);
 
-    playerLevelUpgrades(LevelOutside);
+    Player.prototype.playerLevelUpgrades(LevelOutside);
     //*******************************************************************************XP/HEALTH/LEVEL HANDLERS*******************************
 
 
@@ -278,4 +283,6 @@ LevelOutside.prototype.waveHandler = function(){
     }
 
 };
+
+module.exports = LevelOutside;
 

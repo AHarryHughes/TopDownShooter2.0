@@ -138,3 +138,6 @@ LevelHouse.prototype = {
         game.debug.text(game.time.fps, 5, 14, '#00ff00');
     }
 }
+
+
+module.exports = LevelHouse;

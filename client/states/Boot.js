@@ -13,3 +13,6 @@ Boot.prototype.create = function() {
 
 };
 
+
+module.exports = Boot;
+
