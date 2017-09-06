@@ -5,10 +5,18 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "build": "browserify game.js -o bundle.js -t [ bubleify ]",
+    "dev": "watchify game.js -o bundle.js -t [ bubleify ]"
   },
   "author": "",
   "license": "ISC",
+  "devDependencies": {
+    "browserify": "^14.4.0",
+    "bubleify": "^0.7.0",
+    "uglify-js": "^3.0.28",
+    "watchify": "^3.9.0"
+  },
   "dependencies": {
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.2",
