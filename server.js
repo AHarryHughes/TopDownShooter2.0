@@ -5,16 +5,16 @@ var io = require('socket.io').listen(server);
 const bodyParser = require('body-parser');
 const mustache = require('mustache-express');
 const session = require('express-session');
-const mongoose = require('mongoose');
-mongoose.Promise = require('bluebird');
-const Users = require("./models/Users");
+// const mongoose = require('mongoose');
+// mongoose.Promise = require('bluebird');
+// const Users = require("./models/Users");
 
-mongoose.connect('mongodb://localhost:27017/Shooterbase');
-mongoose.connection
-    .once('open', () => console.log('good to go'))
-    .on('error', (error) => {
-        console.warn('Warning', error);
-    });
+// mongoose.connect('mongodb://localhost:27017/Shooterbase');
+// mongoose.connection
+//     .once('open', () => console.log('good to go'))
+//     .on('error', (error) => {
+//         console.warn('Warning', error);
+//     });
 
 
 application.engine('mustache', mustache());
@@ -36,12 +36,12 @@ application.use(session({
 
 
 application.get('/',function(request, response){
-    if(session.isAuthenticated){
+    // if(session.isAuthenticated){
         response.sendFile(__dirname+'/index.html');
-    }
-    else{
-        response.redirect('login');
-    }
+    // }
+    // else{
+    //     response.redirect('login');
+    // }
 });
 
 application.get('/login', (request, response) => {
@@ -127,24 +127,6 @@ application.post('/signup', async (request, response) => {
 
 server.listen(8081,function(){ // Listens to port 8081
     console.log('Listening on '+server.address().port);
-});
-
-io.sockets.on('connection', function(socket){
-    socket.emit('test', {data: "connected"});
-
-    socket.on('save', async function(data) {
-        console.log("at save server");
-        Users.findByIdAndUpdate(session.user._id, {game: data});
-    });
-
-    socket.on('runLoad', function(){
-        console.log("at runload server");
-        socket.emit('load', {
-            data: session.user.game
-        });
-    });
-
-
 });
 
 

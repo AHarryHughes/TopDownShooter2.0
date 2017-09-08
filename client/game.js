@@ -6,22 +6,4 @@ game.state.add('levelOutside', LevelOutside);
 game.state.add('levelHouse', LevelHouse);
 game.state.start('Boot');
 
-game.saveState = {
-
-    towers: null,
-
-    mercs: null,
-
-    wave: null,
-
-    lvl: null,
-
-    XP: null,
-
-    weapons: null,
-
-    money: null
-
-};
-
 
