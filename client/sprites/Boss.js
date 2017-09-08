@@ -4,9 +4,9 @@ Boss.prototype = {
 
     create: function(State){
 
-        let spawnPoint = State.map.prototype.chooseSpawn(State.map.spawnPoints);
+        let spawnPoint = spawnHandler(State.map.spawnPoints);
         let boss = game.add.sprite( spawnPoint.x, spawnPoint.y, 'player');
-        boss.MOVE_SPEED = 600;
+        boss.MOVE_SPEED = 500;
         boss.tint = 0xff0000;
         boss.anchor.set(0.5);
         boss.scale.set(0.2);
@@ -23,17 +23,17 @@ Boss.prototype = {
     
         State.boss = boss;
 
-        State.gun = Flash.prototype;
-        State.gun.create(State); 
+        State.boss.gun = Flash.prototype;
+        State.boss.bullets = State.boss.gun.create(State);
     },
 
     update: function(State){
 
         behaviorsObj.prototype.bodyCollide(State, State.boss);
         behaviorsObj.prototype.bodyOverlap(State, State.boss, [State.player, State.mercs]);
-        behaviorsObj.prototype.bulletCollide(State, State.boss.gun.bullets);
-        behaviorsObj.prototype.bulletOverlap(State, State.boss.gun.bullets, [State.player, State.mercs]);
-        behaviorsObj.prototype.shoot(State, State.boss, State.player, State.mercs);
+        behaviorsObj.prototype.bulletCollide(State, State.boss.bullets);
+        behaviorsObj.prototype.bulletOverlap(State, State.boss.bullets, [State.player, State.mercs]);
+        behaviorsObj.prototype.shoot(State, State.boss, State.player, [State.mercs]);
         behaviorsObj.prototype.enemyMove(State, State.boss);
     }
 

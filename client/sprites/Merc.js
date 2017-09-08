@@ -22,7 +22,7 @@ Merc.prototype = {
             merc.body.collideWorldBounds = true;
             merc.hitPoints = 10;
             merc.gun = Rifle.prototype;
-            merc.gun.create(State, merc);
+            merc.bullets = merc.gun.create(State, merc);
             merc.shootTime = 0;
         }
     
@@ -36,10 +36,10 @@ Merc.prototype = {
 
             behaviorsObj.prototype.bodyCollide(State, merc);
             behaviorsObj.prototype.bodyOverlap(State, merc, [State.boss, State.enemies, State.shotgunEnemies]);
-            behaviorsObj.prototype.bulletCollide(State, State.merc.gun.bullets);
-            behaviorsObj.prototype.bulletOverlap(State, State.merc.gun.bullets, [State.player, State.enemies, State.shotgunEnemies]);
-            behaviorsObj.prototype.shoot(State, State.merc, State.boss, [State.enemies, State.shotgunEnemies]);
-            behaviorsObj.prototype.mercMove(State, State.merc);
+            behaviorsObj.prototype.bulletCollide(State, merc.bullets);
+            behaviorsObj.prototype.bulletOverlap(State, merc.bullets, [State.boss, State.enemies, State.shotgunEnemies]);
+            behaviorsObj.prototype.shoot(State, merc, State.boss, [State.enemies, State.shotgunEnemies]);
+            behaviorsObj.prototype.mercMove(State, merc);
 
         });
 

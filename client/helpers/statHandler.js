@@ -1,9 +1,10 @@
-function updateStats(State){
+function statHandler(State){
     
         updateXP(State);
         updateHealth(State);
         updateLvl(State);
-    
+        updateUpgrades(State);
+
     }
     
     
@@ -15,7 +16,7 @@ function updateStats(State){
     
     function updateHealth(State){
         if (State.player.health <= 0) {
-            game.state.start('levelHouse');
+            State.game.state.start('levelHouse');
         }
         if (State.player.health <= 30) {
             State.player.tint = Math.random() * 0xffffff;
@@ -26,8 +27,8 @@ function updateStats(State){
         let currentLvl = State.player.playerLevel;
         State.player.playerLevel = Math.floor(Math.log2(State.player.playerXP));
         if(currentLvl < State.player.playerLevel){
-            State.player.health = State.player.maxHealth;
             updateUpgrades(State);
+            State.player.health = State.player.maxHealth;
         }
     };
     
@@ -37,4 +38,4 @@ function updateStats(State){
             State.mercs.MOVE_SPEED = State.player.MOVE_SPEED;
             State.player.maxHealth = 100 + (10 * State.player.playerLevel);
         }
-    }
+    };

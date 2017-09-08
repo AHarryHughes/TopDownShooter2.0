@@ -1,20 +1,21 @@
-var outsideText = {};
+var outsideText = function (){};
 
 outsideText.prototype = {
 
     create: function(State){
 
+        State.text = {};
         State.text.healthText = State.game.add.text(0, 0, "health", { fontSize: '32px', fill: '#fff' });
         State.text.healthText.fixedToCamera = true;
         State.text.levelText = State.game.add.text(0, 30, "level", { fontSize: '32px', fill: '#fff' });
         State.text.levelText.fixedToCamera = true;
         State.text.XPText = State.game.add.text(0, 60, "XP", { fontSize: '32px', fill: '#fff' });
         State.text.XPText.fixedToCamera = true;
-        State.text.waveText = State.game.add.text(620, 0, "wave", { fontSize: '32px', fill: '#fff' });
+        State.text.waveText = State.game.add.text(500, 0, "wave", { fontSize: '32px', fill: '#fff' });
         State.text.waveText.fixedToCamera = true;
-        State.text.mercText = State.game.add.text(1200, 0, "merc", { fontSize: '32px', fill: '#fff' });
+        State.text.mercText = State.game.add.text(1000, 0, "merc", { fontSize: '32px', fill: '#fff' });
         State.text.mercText.fixedToCamera = true;
-        State.text.bossText = State.game.add.text(620, 30, "boss", { fontSize: '32px', fill: '#fff' });
+        State.text.bossText = State.game.add.text(500, 30, "boss", { fontSize: '32px', fill: '#fff' });
         State.text.bossText.fixedToCamera = true;
         //Set text for house
         //Add some color??

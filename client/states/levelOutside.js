@@ -1,52 +1,60 @@
 
 LevelOutside = function () { };
 
-LevelOutside.prototype.create = function () {
+LevelOutside.prototype = {
 
-    outsideMap.prototype.create(this);
+        create: function () {
 
-    Player.prototype.create(this);
-    Merc.prototype.create(this);
-    Boss.prototype.create(this);
-    Enemies.prototype.create(this);
-    
-    outsideEvents.prototype.openingTween(this)
-    
-    outsideMap.prototype.layForeground(this)
 
-    keyConfig(this);
+            outsideMap.prototype.create(this);
 
-    this.wave = 1;
+            Player.prototype.create(this);
+            Merc.prototype.create(this);
+            Boss.prototype.create(this);
+            Enemies.prototype.create(this);
+            ShotgunEnemies.prototype.create(this);
 
-    outsideText.prototype.create(this);
+            outsideEvents.prototype.openingTween(this);
+
+            outsideMap.prototype.layForeground(this);
+
+            keyConfig(this);
+
+            this.wave = 1;
+
+            outsideText.prototype.create(this);
+        },
+
+        update: function () {
+
+
+            outsideText.prototype.update(this);
+
+            //sprite updates
+            Player.prototype.update(this);
+            Merc.prototype.update(this);
+            Boss.prototype.update(this);
+            Enemies.prototype.update(this);
+            ShotgunEnemies.prototype.update(this);
+
+            this.waveHandler();
+
+        },
+
+        waveHandler: function() {
+
+            this.waveEnemies = this.enemies.length + this.shotgunEnemies.length;
+
+            if (this.waveEnemies == this.enemies.countDead() + this.shotgunEnemies.countDead()) {
+                this.wave += 1;
+                this.player.playerXPStart = this.player.playerXP;
+                //SET IF STATEMENT SO IF MOD 5 LEVELHOUSE STARTS AND PLAYER/TOWERS/MERCS/MONEY/WAVE/WEAPONS SAVED
+                Boss.prototype.create(this);
+                Enemies.prototype.create(this);
+                ShotgunEnemies.prototype.create(this);
+            }
+        }
+
 };
 
-LevelOutside.prototype.update = function () {
-
-    outsideText.prototype.update(this);
-
-    //sprite updates
-    this.player.update(this);
-    this.mercs.update(this);
-    this.boss.update(this);
-    this.enemies.update(this);
-    this.shotgunEnemies.update(this);
-
-    LevelOutside.prototype.waveHandler();
-
-};
-
-LevelOutside.prototype.waveHandler = function(){
-
-    LevelOutside.waveEnemies = LevelOutside.enemies.length + LevelOutside.shotgunEnemies.length;
-
-    if(LevelOutside.waveEnemies == LevelOutside.enemies.countDead() + LevelOutside.shotgunEnemies.countDead()){
-        LevelOutside.wave += 1;
-        LevelOutside.player.playerXPStart = LevelOutside.player.playerXP;
-        //SET IF STATEMENT SO IF MOD 5 LEVELHOUSE STARTS AND PLAYER/TOWERS/MERCS/MONEY/WAVE/WEAPONS SAVED
-        Boss (LevelOutside, LevelOutside.spawnPoints);
-        Enemies(LevelOutside, LevelOutside.spawnPoints);
-    }
-
-};
 

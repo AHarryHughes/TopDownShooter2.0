@@ -1,10 +1,10 @@
-var outsideMap = {};
+var outsideMap = function (){};
 
 outsideMap.prototype = {
 
     create: function(State){
 
-        State.map = State.add.tilemap("outside");
+        State.map = State.game.add.tilemap("outside");
         State.map.addTilesetImage('large-map', 'large-map');
 
 
@@ -32,14 +32,8 @@ outsideMap.prototype = {
 
     layForeground: function(State){
 
-        let layerForeground = map.createLayer('Foreground');
+        let layerForeground = State.map.createLayer('Foreground');
         layerForeground.resizeWorld();
-
-    },
-
-    chooseSpawnLocation: function(State){
-
-        return spawnPoints[Math.floor(Math.random() * spawnPoints.length)];
 
     }
 

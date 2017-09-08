@@ -26,25 +26,26 @@ Player.prototype = {
         
         //make dot notation for each gun type
         State.player.pistol = Pistol.prototype;
-        State.player.pistol.create(State);
+        State.player.pistolbullets = State.player.pistol.create(State);
         State.player.rifle = Rifle.prototype;
-        State.player.rifle.create(State);
+        State.player.riflebullets = State.player.rifle.create(State);
         State.player.shotgun = Shotgun.prototype;
-        State.player.shotgun.create(State);
+        State.player.shotgunbullets = State.player.shotgun.create(State);
         State.player.flash = Flash.prototype;
-        State.player.flash.create(State);
+        State.player.flashbullets = State.player.flash.create(State);
 
         State.player.gun = State.player.rifle;
+        State.player.bullets = State.player.riflebullets;
 
     },
 
     update: function(State){
 
         behaviorsObj.prototype.bodyCollide(State, State.player);
-        behaviorsObj.prototype.bulletCollide(State, State.player.gun.bullets);
-        behaviorsObj.prototype.bulletOverlap(State, State.player.gun.bullets, [State.enemies, State.shotgunEnemies, State.boss]);
+        behaviorsObj.prototype.bulletCollide(State, State.player.bullets);
+        behaviorsObj.prototype.bulletOverlap(State, State.player.bullets, [State.boss, State.shotgunEnemies, State.enemies]);
         behaviorsObj.prototype.playerInput(State);
-        behaviorsObj.prototype.updateStats(State);
+        statHandler(State);
 
     }
 

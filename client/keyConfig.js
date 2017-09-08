@@ -11,7 +11,8 @@ function keyConfig(State){
       pistol: State.game.input.keyboard.addKey(Phaser.Keyboard.ONE),
       rifle: State.game.input.keyboard.addKey(Phaser.Keyboard.TWO),
       shotgun: State.game.input.keyboard.addKey(Phaser.Keyboard.THREE),
-      flash: State.game.input.keyboard.addKey(Phaser.Keyboard.FOUR)
+      flash: State.game.input.keyboard.addKey(Phaser.Keyboard.FOUR),
+      menu: State.game.input.keyboard.addKey(Phaser.Keyboard.M)
     };
     State.game.input.keyboard.addKey(Phaser.KeyCode.C).onDown.add(() => {
         State.map.collisionLayer.visible = !State.map.collisionLayer.visible;

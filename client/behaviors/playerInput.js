@@ -21,7 +21,7 @@ behaviorsObj.prototype.playerInput = function(State){
     
         //shoot on mouse click
         if (State.game.input.mousePointer.isDown) {
-            State.player.gun.prototype.shoot(State, State.player, State.game.input.activePointer);
+            State.player.gun.shoot(State, State.player, State.game.input.activePointer);
         }
     
         //update player sprite sheet
@@ -30,10 +30,25 @@ behaviorsObj.prototype.playerInput = function(State){
         } else {
             State.player.play('idle');
         }
-    
+
         //add keys to switch the gun
-        if (State.keyboardCursors.pistol.isDown || State.playerInteraction.pistol.isDown) State.player.gun = State.player.pistol;
-        if (State.keyboardCursors.rifle.isDown || State.playerInteraction.rifle.isDown) State.player.gun = State.player.rifle;
-        if (State.keyboardCursors.shotgun.isDown || State.playerInteraction.shotgun.isDown) State.player.gun = State.player.shotgun;
-        if (State.keyboardCursors.flash.isDown || State.playerInteraction.flash.isDown) State.player.gun = State.player.flash;
+        if (State.playerInteraction.pistol.isDown) {
+            State.player.gun = State.player.pistol;
+            State.player.bullets = State.player.pistolbullets;
+        };
+        if (State.playerInteraction.rifle.isDown) {
+            State.player.gun = State.player.rifle;
+            State.player.bullets = State.player.pistolbullets;
+        };
+        if (State.playerInteraction.shotgun.isDown) {
+            State.player.gun = State.player.shotgun;
+            State.player.bullets = State.player.shotgunbullets;
+        };
+        if (State.playerInteraction.flash.isDown) {
+            State.player.gun = State.player.flash;
+            State.player.bullets = State.player.flashbullets;
+        };
+
+        //Send to menu
+        if (State.playerInteraction.menu.isDown) State.game.state.start('MainMenu');;
 }

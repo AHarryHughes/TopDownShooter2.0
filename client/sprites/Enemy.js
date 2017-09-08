@@ -9,7 +9,7 @@ Enemies.prototype = {
         enemies.enableBody = true;
         enemies.physicsBodyType = Phaser.Physics.ARCADE;
         for (let i = 0; i < enemiesTotal; i++) {
-            let spawn = this.chooseSpawn(spawnPoints);
+            let spawn = spawnHandler(State.map.spawnPoints);
             let randomX = Math.random() * 300;
             let randomY = Math.random() * 300;
             let enemy = enemies.create(spawn.x + randomX, spawn.y + randomY, 'flashlight-enemy');
@@ -38,8 +38,9 @@ Enemies.prototype = {
         State.enemies.forEachAlive(function(enemy){
 
             behaviorsObj.prototype.bodyCollide(State, enemy);
-            behaviorsObj.prototype.bodyOverlap(State, enemy, [State.player, State.merc]);
-            behaviorsObj.prototype.enemyMove(State, State.enemy);
+            behaviorsObj.prototype.selfCollide(State, enemy);
+            behaviorsObj.prototype.bodyOverlap(State, enemy, [State.player, State.mercs]);
+            behaviorsObj.prototype.enemyMove(State, enemy);
 
         });
 

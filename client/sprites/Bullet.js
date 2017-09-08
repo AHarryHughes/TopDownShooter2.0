@@ -14,7 +14,7 @@ Bullet.prototype = {
         Bullets.setAll('scale.y', size);
         Bullets.setAll('outOfBoundsKill', true);
         Bullets.setAll('checkWorldBounds', true);
-        Bullets.setAll('hitPoints', hitPoints);
+        Bullets.setAll('hitPoints', hitPoints, false, false, 0, true);
 
         if(tint){
             Bullets.setAll('tint', tint);

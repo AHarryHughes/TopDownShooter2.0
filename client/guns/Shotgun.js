@@ -8,36 +8,39 @@ Shotgun.prototype = {
 
         //bullet creation based on type
         //damage set on type
-        this.bullets = Bullet.prototype.create(State, 0.5, null, 25, 25);
+        return Bullet.prototype.create(State, 0.5, null, 25, 25);
 
     },
     
-    range: 1,
+    range: 1.7,
 
     shoot: function(State, shooter, target){
-            let shotRatio = State.game.physics.arcade.distanceToXY(Shooter, target.x, target.y)/2;
+            let shotRatio = State.game.physics.arcade.distanceToXY(shooter, target.x, target.y)/2;
             if (State.game.time.now > shooter.shootTime) {  
-                let bullet = State.shooter.gun.bullets.getFirstExists(false);
+                let bullet = shooter.bullets.getFirstExists(false);
                 if (bullet) {
                     bullet.reset(shooter.x, shooter.y);
-                    bullet.body.velocity.x = 10000;
+                    bullet.body.velocity.x = 1000;
                     shooter.shootTime = State.game.time.now + 700; //fire rate determinate
-                    bullet.rotation = State.game.physics.arcade.moveToObject(bullet, 10000, target, 100); //might break for the player
-                    bullet.lifespan = 100;
+                    if(target == State.game.input.activePointer){bullet.rotation = State.game.physics.arcade.moveToPointer(bullet, 1000, State.game.input.activePointer);}
+                    else{bullet.rotation = State.game.physics.arcade.moveToXY(bullet, target.x, target.y, 1000);} 
+                    bullet.lifespan = this.range * 160;
                 }
-                let bullet = State.shooter.gun.bullets.getFirstExists(false);
+                bullet = shooter.bullets.getFirstExists(false);
                 if (bullet) {
                     bullet.reset(shooter.x, shooter.y);
-                    bullet.body.velocity.x = 10000;
-                    bullet.rotation = State.game.physics.arcade.moveToXY(bullet, (target.x+shotRatio), (target.y-shotRatio), 10000, 100); //might break for the player
-                    bullet.lifespan = 100;
+                    bullet.body.velocity.x = 1000;
+                    if(target == State.game.input.activePointer){bullet.rotation = State.game.physics.arcade.moveToXY(bullet, (State.game.input.activePointer.x+shotRatio), (State.game.input.activePointer.y-shotRatio), 1000);}
+                    else{bullet.rotation = State.game.physics.arcade.moveToXY(bullet, (target.x+shotRatio), (target.y-shotRatio), 1000);} 
+                    bullet.lifespan = this.range * 160;
                 }
-                let bullet = State.shooter.gun.bullets.getFirstExists(false);
+                bullet = shooter.bullets.getFirstExists(false);
                 if (bullet) {
                     bullet.reset(shooter.x, shooter.y);
-                    bullet.body.velocity.x = 10000;
-                    bullet.rotation = State.game.physics.arcade.moveToXY(bullet, (target.x-shotRatio), (target.y+shotRatio), 10000, 100); //might break for the player
-                    bullet.lifespan = 100;
+                    bullet.body.velocity.x = 1000;
+                    if(target == State.game.input.activePointer){bullet.rotation = State.game.physics.arcade.moveToXY(bullet, (State.game.input.activePointer.x-shotRatio), (State.game.input.activePointer.y+shotRatio), 1000);}
+                    else{bullet.rotation = State.game.physics.arcade.moveToXY(bullet, (target.x-shotRatio), (target.y+shotRatio), 1000);} 
+                    bullet.lifespan = this.range * 160;
                 }
             }
     }

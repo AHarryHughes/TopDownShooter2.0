@@ -9,7 +9,7 @@ ShotgunEnemies.prototype = {
         shotgunEnemies.enableBody = true;
         shotgunEnemies.physicsBodyType = Phaser.Physics.ARCADE;
         for (let i = 0; i < shotgunEnemiesTotal; i++) {
-            let spawn = this.chooseSpawn(spawnPoints);
+            let spawn = spawnHandler(State.map.spawnPoints);
             let randomX = Math.random() * 300;
             let randomY = Math.random() * 300;
             let shotgunEnemy = shotgunEnemies.create(spawn.x + randomX, spawn.y + randomY, 'shotgun-enemy');
@@ -27,9 +27,9 @@ ShotgunEnemies.prototype = {
             shotgunEnemy.body.velocity.y = 0;
             shotgunEnemy.health = 100;
             shotgunEnemy.shootTime = 0;
-            enemy.hitPoints = 10;
+            shotgunEnemy.hitPoints = 10;
             shotgunEnemy.gun = Shotgun.prototype;
-            shotgunEnemy.gun.create(State);
+            shotgunEnemy.bullets = shotgunEnemy.gun.create(State);
         }
     
         State.shotgunEnemies = shotgunEnemies;
@@ -41,11 +41,12 @@ ShotgunEnemies.prototype = {
         State.shotgunEnemies.forEachAlive(function(shotgunEnemy){
 
             behaviorsObj.prototype.bodyCollide(State, shotgunEnemy);
+            behaviorsObj.prototype.selfCollide(State, shotgunEnemy);
             behaviorsObj.prototype.bodyOverlap(State, shotgunEnemy, [State.player, State.mercs]);
-            behaviorsObj.prototype.bulletCollide(State, State.shotgunEnemy.gun.bullets);
-            behaviorsObj.prototype.bulletOverlap(State, State.shotgunEnemy.gun.bullets, [State.player, State.mercs]);
-            behaviorsObj.prototype.shoot(State, State.shotgunEnemy, State.player, [State.mercs]);
-            behaviorsObj.prototype.mercMove(State, State.shotgunEnemy);
+            behaviorsObj.prototype.bulletCollide(State, shotgunEnemy.bullets);
+            behaviorsObj.prototype.bulletOverlap(State, shotgunEnemy.bullets, [State.player, State.mercs]);
+            behaviorsObj.prototype.shoot(State, shotgunEnemy, State.player, [State.mercs]);
+            behaviorsObj.prototype.mercMove(State, shotgunEnemy);
 
         });        
 
