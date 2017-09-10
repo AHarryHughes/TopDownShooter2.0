@@ -13,11 +13,16 @@ Preloader.prototype.preload = function () {
     this.load.image('large-map', './client/assets/TMX/BETA-MAP/large-map.png');
 
 
-    this.load.tilemap('inside', './client/assets/maps/level-inside.json', null, Phaser.Tilemap.TILED_JSON);
-    this.load.image('inside-tileset', './client/assets/maps/inside-tileset.png');
+    this.load.tilemap('inside', './client/assets/TMX/BETA-MAP/inside.json', null, Phaser.Tilemap.TILED_JSON);
+    this.load.image('inside-tileset', './client/assets/TMX/BETA-MAP/outside-tileset.png');
 
 
-    this.load.atlas('player', './client/assets/animations/player-rifle.png', './client/assets/animations/player-rifle.json');
+    this.load.atlasJSONHash(
+        'player',
+        './client/assets/animations/player.png',
+        './client/assets/animations/player.json'
+    );
+    this.load.atlas('merc', './client/assets/animations/player-rifle.png', './client/assets/animations/player-rifle.json');
     this.load.atlas('flashlight-enemy', './client/assets/sprites/flashlight-enemy.png', './client/assets/sprites/flashlight-enemy.json');
     this.load.atlas('shotgun-enemy', './client/assets/sprites/shotgun-enemy.png', './client/assets/sprites/shotgun-enemy.json');
 

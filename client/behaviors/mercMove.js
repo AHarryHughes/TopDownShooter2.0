@@ -6,9 +6,9 @@ behaviorsObj.prototype.mercMove = function(State, merc) {
        
     if (State.player.alive && game.physics.arcade.distanceBetween(State.player, merc) >= 50) {
         State.game.physics.arcade.moveToObject(merc, State.player, merc.MOVE_SPEED);
-        merc.animations.play('move');
+        merc.animations.play('rifle-move');
     }
     else{
-        merc.animations.play('idle');
+        merc.animations.play('rifle-idle');
     }
 };

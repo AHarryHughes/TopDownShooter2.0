@@ -1,10 +1,17 @@
 function statHandler(State){
-    
+
+        updateCurrency(State);
         updateXP(State);
         updateHealth(State);
         updateLvl(State);
         updateUpgrades(State);
 
+    }
+
+    function updateCurrency(State) {
+        let currencyBoost = (State.enemies.countDead() * (10 + State.wave) ) + (State.shotgunEnemies.countDead() * (20 + State.wave));
+        if(!State.boss.alive){currencyBoost += (100 + State.wave);}
+        State.player.currency = State.player.currencyStart + currencyBoost;
     }
     
     

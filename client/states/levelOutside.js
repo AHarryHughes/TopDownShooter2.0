@@ -8,11 +8,19 @@ LevelOutside.prototype = {
 
             outsideMap.prototype.create(this);
 
+            if(gameStatHandler.prototype.newGame){
+                gameStatHandler.prototype.create(this);
+                gameStatHandler.prototype.newGame = false;
+            }
+
             Player.prototype.create(this);
             Merc.prototype.create(this);
+            Tower.prototype.create(this);
             Boss.prototype.create(this);
             Enemies.prototype.create(this);
             ShotgunEnemies.prototype.create(this);
+            PistolEnemies.prototype.create(this);
+            RifleEnemies.prototype.create(this);
 
             outsideEvents.prototype.openingTween(this);
 
@@ -33,26 +41,15 @@ LevelOutside.prototype = {
             //sprite updates
             Player.prototype.update(this);
             Merc.prototype.update(this);
+            Tower.prototype.update(this);
             Boss.prototype.update(this);
             Enemies.prototype.update(this);
             ShotgunEnemies.prototype.update(this);
+            PistolEnemies.prototype.update(this);
+            RifleEnemies.prototype.update(this);
 
-            this.waveHandler();
+            waveHandler(this);
 
-        },
-
-        waveHandler: function() {
-
-            this.waveEnemies = this.enemies.length + this.shotgunEnemies.length;
-
-            if (this.waveEnemies == this.enemies.countDead() + this.shotgunEnemies.countDead()) {
-                this.wave += 1;
-                this.player.playerXPStart = this.player.playerXP;
-                //SET IF STATEMENT SO IF MOD 5 LEVELHOUSE STARTS AND PLAYER/TOWERS/MERCS/MONEY/WAVE/WEAPONS SAVED
-                Boss.prototype.create(this);
-                Enemies.prototype.create(this);
-                ShotgunEnemies.prototype.create(this);
-            }
         }
 
 };

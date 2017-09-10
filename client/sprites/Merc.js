@@ -5,16 +5,16 @@ Merc.prototype = {
     create: function(State){
 
         let mercs = game.add.group();
-        let mercsTotal = 1;
+        let mercsTotal = gameStatHandler.prototype.mercsAmount;
         for(let i = 0; i < mercsTotal; i++){
-            let merc = mercs.create(2977 + i, 1060 + i, 'player');
+            let merc = mercs.create(2977 + i, 1060 + i, 'merc');
             merc.tint = 0x00ff00;
             merc.MOVE_SPEED = 500;
             merc.anchor.set(0.5);
             merc.scale.set(0.2);
             merc.animations.add('idle', [0, 1, 2, 3, 5, 6, 7, 8, 14, 19, 20], 20, true);
             merc.animations.add('move', [4, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18], 18, true);
-            merc.play('move');
+            merc.play('idle');
             merc.maxHealth = 100;
             merc.health = merc.maxHealth;
             game.physics.arcade.enable(merc);
@@ -31,6 +31,8 @@ Merc.prototype = {
     },
 
     update: function(State){
+
+        behaviorsObj.prototype.selfCollide(State, State.mercs);
 
         State.mercs.forEachAlive(function(merc){
 

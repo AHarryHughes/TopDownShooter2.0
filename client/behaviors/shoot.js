@@ -2,9 +2,8 @@ behaviorsObj.prototype.shoot = function(State, shooter, target, targets){
 
 
     let range = shooter.gun.range * 200;
-    let done = false;
 
-    if (target && shooter.alive && State.game.physics.arcade.distanceBetween(shooter, target) <= range) {
+    if (target.alive && shooter.alive && State.game.physics.arcade.distanceBetween(shooter, target) <= range) {
         shooter.gun.shoot(State, shooter, target);
     }
 
@@ -19,7 +18,6 @@ behaviorsObj.prototype.shoot = function(State, shooter, target, targets){
                     }
                 }
             );
-            if(done){break;}
         }
         
     }

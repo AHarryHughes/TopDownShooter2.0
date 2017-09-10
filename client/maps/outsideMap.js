@@ -24,9 +24,17 @@ outsideMap.prototype = {
         State.map.spawnPoints = [];
         let spawn1 = State.map.objects.meta.find(o => o.name == 'spawn1');
         let spawn2 = State.map.objects.meta.find(o => o.name == 'spawn2');
-        let spawn3 = State.map.objects.meta.find(o => o.name == 'spawn3');
-        let spawn4 = State.map.objects.meta.find(o => o.name == 'spawn4');
-        State.map.spawnPoints.push(spawn1, spawn2, spawn3, spawn4);
+        State.map.bossSpawn = State.map.objects.meta.find(o => o.name == 'spawn3');
+        State.map.spawnPoints.push(spawn1, spawn2);
+
+        State.map.towerPoints = [];
+        for(let i = 1; i<75; i++){
+            let spotName = "tower" + i;
+            State.map.towerPoints.push(State.map.objects.meta.find(o => o.name == spotName));
+        }
+
+        State.map.house = State.map.objects.meta.find(o => o.name == 'house');
+        State.map.houseRectangle = new Phaser.Rectangle(State.map.house.x, State.map.house.y, State.map.house.width, State.map.house.height);
 
     },
 
