@@ -4,7 +4,7 @@ Player.prototype = {
 
     create: function(State){
 
-        let player = State.game.add.sprite( 100, 240);
+        let player = State.game.add.sprite( 100, 240, 'player');
         player.MOVE_SPEED = 500;
         player.anchor.set(0.5);
         player.scale.set(0.2);
