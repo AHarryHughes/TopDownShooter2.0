@@ -27,7 +27,7 @@ Enemies.prototype = {
             enemy.body.velocity.y = 0;
             enemy.health = 100;
             enemy.hitPoints = 4;
-            enemy.MOVE_SPEED = player.MOVE_SPEED * 1.25;
+            enemy.MOVE_SPEED = State.player.MOVE_SPEED * 1;
         }
     
         State.enemies = enemies;

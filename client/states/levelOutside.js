@@ -9,18 +9,14 @@ LevelOutside.prototype = {
             outsideMap.prototype.create(this);
 
             if(gameStatHandler.prototype.newGame){
-                gameStatHandler.prototype.create(this);
+                gameStatHandler.prototype.create();
                 gameStatHandler.prototype.newGame = false;
             }
-
+            House.prototype.create(this);
             Player.prototype.create(this);
             Merc.prototype.create(this);
             Tower.prototype.create(this);
-            Boss.prototype.create(this);
-            Enemies.prototype.create(this);
-            ShotgunEnemies.prototype.create(this);
-            PistolEnemies.prototype.create(this);
-            RifleEnemies.prototype.create(this);
+            waveCreator(this);
 
             outsideEvents.prototype.openingTween(this);
 
@@ -28,7 +24,9 @@ LevelOutside.prototype = {
 
             keyConfig(this);
 
-            this.wave = 1;
+            if(!this.wave){
+                this.wave = 1;
+            }
 
             outsideText.prototype.create(this);
         },
@@ -39,14 +37,11 @@ LevelOutside.prototype = {
             outsideText.prototype.update(this);
 
             //sprite updates
+            House.prototype.update(this);
             Player.prototype.update(this);
             Merc.prototype.update(this);
             Tower.prototype.update(this);
-            Boss.prototype.update(this);
-            Enemies.prototype.update(this);
-            ShotgunEnemies.prototype.update(this);
-            PistolEnemies.prototype.update(this);
-            RifleEnemies.prototype.update(this);
+            waveUpdator(this);
 
             waveHandler(this);
 

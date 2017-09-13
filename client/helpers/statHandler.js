@@ -10,19 +10,20 @@ function statHandler(State){
 
     function updateCurrency(State) {
         let currencyBoost = (State.enemies.countDead() * (10 + State.wave) ) + (State.shotgunEnemies.countDead() * (20 + State.wave));
-        if(!State.boss.alive){currencyBoost += (100 + State.wave);}
+        if(State.boss && !State.boss.alive){currencyBoost += (100 + State.wave);}
         State.player.currency = State.player.currencyStart + currencyBoost;
     }
     
     
     function updateXP(State) {
         let XPBoost = (State.enemies.countDead() * (2 + State.wave) ) + (State.shotgunEnemies.countDead() * (4 + State.wave));
-        if(!State.boss.alive){XPBoost += (20 + State.wave);}
+        if(State.boss && !State.boss.alive){XPBoost += (20 + State.wave);}
         State.player.playerXP = State.player.playerXPStart + XPBoost;
     }
     
     function updateHealth(State){
         if (State.player.health <= 0) {
+            gameStatHandler.prototype.save(State);
             State.game.state.start('levelHouse');
         }
         if (State.player.health <= 30) {

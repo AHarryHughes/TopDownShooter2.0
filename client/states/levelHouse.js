@@ -7,9 +7,12 @@ LevelHouse.prototype = {
         insideMap.prototype.create(this);
 
         Player.prototype.create(this);
-        //Set NPC
+
+        NPC.prototype.create(this);
 
         insideMap.prototype.layForeground(this);
+
+        insideText.prototype.create(this);
 
         keyConfig(this);
 
@@ -20,8 +23,9 @@ LevelHouse.prototype = {
     update: function () {
        Player.prototype.updateHouse(this);
 
+       NPC.prototype.update(this);
+
         if (Phaser.Rectangle.containsPoint(this.map.exitRect, this.player.position)) {
-            gameStatHandler.prototype.save(this);
             this.game.state.start('levelOutside');
         }
     }

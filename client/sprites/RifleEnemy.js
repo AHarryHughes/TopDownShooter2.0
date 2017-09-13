@@ -30,7 +30,7 @@ RifleEnemies.prototype = {
             rifleEnemy.hitPoints = 3;
             rifleEnemy.gun = Shotgun.prototype;
             rifleEnemy.bullets = rifleEnemy.gun.create(State);
-            rifleEnemy.MOVE_SPEED = player.MOVE_SPEED * .9;
+            rifleEnemy.MOVE_SPEED = State.player.MOVE_SPEED * .9;
         }
     
         State.rifleEnemies = rifleEnemies;

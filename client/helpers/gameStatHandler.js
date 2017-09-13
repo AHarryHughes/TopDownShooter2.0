@@ -4,28 +4,27 @@ gameStatHandler.prototype = {
 
     newGame: true,
 
-    create: function(State) {
+    create: function() {
 
-        State.XP = 1;
-        State.Level = 1;
-        State.mercsAmount = 1;
-        State.value = 1;
-        State.towersToAllocate = [];
-
-        //just for testing
-        for(let i = 0; i<74; i++){
-            State.towersToAllocate.push(i%4);
-        }
+        this.playerXP = 1;
+        this.playerLevel = 1;
+        this.mercsAmount = 1;
+        this.currency = 1;
+        this.towersAmount = 1;
 
     },
 
     save: function(State) {
 
-        State.XP = State.player.playerXP;
-        State.Level = State.player.playerLevel;
-        State.mercsAmount = State.mercs.countLiving();
-        State.value = State.player.currency;
-        //add towers
+        this.playerXP = State.player.playerXP;
+        this.playerLevel = State.player.playerLevel;
+        if(State.mercs){
+            this.mercsAmount = State.mercs.countLiving();
+        }
+        else{
+            this.mercsAmount = 0;
+        }
+        this.towersAmount = State.player.currency;
 
     }
 

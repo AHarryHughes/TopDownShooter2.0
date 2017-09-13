@@ -32,12 +32,12 @@ Player.prototype = {
         player.body.setSize(100, 150, 100, 50);
         State.game.camera.follow(player);
         player.body.collideWorldBounds = true;
-        player.playerLevel = State.Level;
-        player.playerXP = State.XP;
+        player.playerLevel = gameStatHandler.prototype.playerLevel;
+        player.playerXP = gameStatHandler.prototype.playerXP;
         player.playerXPStart = player.playerXP;
         player.shootTime = 0;
-        player.currency = State.value;
-        player.currencyStart = State.currency;
+        player.currency = gameStatHandler.prototype.currency;
+        player.currencyStart = player.currency;
     
         State.player = player;
         
@@ -60,7 +60,7 @@ Player.prototype = {
 
         behaviorsObj.prototype.bodyCollide(State, State.player);
         behaviorsObj.prototype.bulletCollide(State, State.player.bullets);
-        behaviorsObj.prototype.bulletOverlap(State, State.player.bullets, [State.boss, State.shotgunEnemies, State.enemies]);
+        behaviorsObj.prototype.bulletOverlap(State, State.player.bullets, [State.boss, State.shotgunEnemies, State.enemies, State.pistolEnemies, State.rifleEnemies]);
         behaviorsObj.prototype.playerInput(State);
         statHandler(State);
 
