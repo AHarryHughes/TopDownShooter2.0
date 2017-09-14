@@ -5,7 +5,7 @@ Boss.prototype = {
     create: function(State){
 
         let spawnPoint = State.map.bossSpawn;
-        let boss = game.add.sprite( spawnPoint.x, spawnPoint.y, 'flashlight-enemy');
+        let boss = State.waveEnemies.create(spawnPoint.x, spawnPoint.y, 'flashlight-enemy');
         boss.MOVE_SPEED = State.player.Move_SPEED - 100;
         boss.tint = 0xff0000;
         boss.anchor.set(0.5);
@@ -21,49 +21,37 @@ Boss.prototype = {
         boss.body.collideWorldBounds = true;
         boss.shootTime = 0;
         boss.hitPoints = 5 * (State.wave/5);
-    
-        State.boss = boss;
 
         if(State.wave%35 == 0){
-            State.boss.gun = Laser.prototype;
-            State.boss.bullets = State.boss.gun.create(State);
+            boss.gun = Laser.prototype;
+            boss.bullets = boss.gun.create(State);
         }
         else if(State.wave%30 == 0){
-            State.boss.gun = Laser.prototype;
-            State.boss.bullets = State.boss.gun.create(State);
+            boss.gun = Laser.prototype;
+            boss.bullets = boss.gun.create(State);
         }
         else if(State.wave%25 == 0){
-            State.boss.gun = Sniper.prototype;
-            State.boss.bullets = State.boss.gun.create(State);
+            boss.gun = Sniper.prototype;
+            boss.bullets = boss.gun.create(State);
         }
         else if(State.wave%20 == 0){
-            State.boss.gun = Rifle.prototype;
-            State.boss.bullets = State.boss.gun.create(State);
+            boss.gun = Rifle.prototype;
+            boss.bullets = boss.gun.create(State);
         }
         else if(State.wave%15 == 0){
-            State.boss.gun = Shotgun.prototype;
-            State.boss.bullets = State.boss.gun.create(State);
+            boss.gun = Shotgun.prototype;
+            boss.bullets = boss.gun.create(State);
         }
         else if(State.wave%10 == 0){
-            State.boss.gun = Aoe.prototype;
-            State.boss.bullets = State.boss.gun.create(State);
+            boss.gun = Aoe.prototype;
+            boss.bullets = boss.gun.create(State);
         }
         else if(State.wave%5 == 0){
-            State.boss.gun = Pistol.prototype;
-            State.boss.bullets = State.boss.gun.create(State);
+            boss.gun = Pistol.prototype;
+            boss.bullets = boss.gun.create(State);
         }
 
        
-    },
-
-    update: function(State){
-
-        behaviorsObj.prototype.bodyCollide(State, State.boss);
-        behaviorsObj.prototype.bodyOverlap(State, State.boss, [State.player, State.mercs]);
-        behaviorsObj.prototype.bulletCollide(State, State.boss.bullets);
-        behaviorsObj.prototype.bulletOverlap(State, State.boss.bullets, [State.player, State.mercs]);
-        behaviorsObj.prototype.shoot(State, State.boss, State.player, [State.mercs]);
-        behaviorsObj.prototype.enemyMove(State, State.boss);
     }
 
 };

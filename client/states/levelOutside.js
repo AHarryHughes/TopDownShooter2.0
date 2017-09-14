@@ -12,23 +12,22 @@ LevelOutside.prototype = {
                 gameStatHandler.prototype.create();
                 gameStatHandler.prototype.newGame = false;
             }
+
+            this.wave = gameStatHandler.prototype.wave;
+
             House.prototype.create(this);
             Player.prototype.create(this);
             Merc.prototype.create(this);
             Tower.prototype.create(this);
-            waveCreator(this);
-
-            outsideEvents.prototype.openingTween(this);
+            waveHandler.prototype.create(this);
 
             outsideMap.prototype.layForeground(this);
 
             keyConfig(this);
 
-            if(!this.wave){
-                this.wave = 1;
-            }
-
             outsideText.prototype.create(this);
+
+            outsideEvents.prototype.openingTween(this);
         },
 
         update: function () {
@@ -41,9 +40,7 @@ LevelOutside.prototype = {
             Player.prototype.update(this);
             Merc.prototype.update(this);
             Tower.prototype.update(this);
-            waveUpdator(this);
-
-            waveHandler(this);
+            waveHandler.prototype.update(this);
 
         }
 

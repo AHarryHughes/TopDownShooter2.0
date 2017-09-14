@@ -1,65 +1,94 @@
-function waveHandler(State) {
+var waveHandler = function() {};
 
+
+waveHandler.prototype = {
+
+    incrementTime: 0,
+
+    beenInHouse: false,
+
+    create: function(State) {
+
+        if(State.wave % 5 == 1 && State.wave > 1 && !this.beenInHouse){
+            
+            gameStatHandler.prototype.save(State);
+            State.game.state.start('levelHouse');
     
+        }
+        else{
 
-    State.waveEnemies = State.enemies.length + State.shotgunEnemies.length + State.pistolEnemies.length + State.rifleEnemies.length;
+            beenInHouse = false;
+            State.waveEnemies = null;
+            State.waveEnemies = State.game.add.group();
+            Enemy.prototype.create(State);
+            State.waveEnemies.enableBody = true;
+            State.waveEnemies.physicsBodyType = Phaser.Physics.ARCADE;
 
-    if (State.waveEnemies == State.enemies.countDead() + State.shotgunEnemies.countDead() + State.pistolEnemies.countDead() + State.rifleEnemies.countDead() && ((State.boss && !State.boss.alive) || (!State.boss))) {
+        }
 
-       State.wave += 1;
-       State.player.playerXPStart = State.player.playerXP;
-       State.player.currencyStart = State.player.currency;
-        waveCreator(State);
+    },
 
-    }
-    else{
+    update: function(State) {
 
-        //increment the spawning
+            if (State.waveEnemies.length == State.waveEnemies.countDead()) {
+        
+               State.wave += 1;
+               State.player.playerXPStart = State.player.playerXP;
+               State.player.currencyStart = State.player.currency;
+                this.create(State);
+        
+            }
+            else{
+        
+                this.increment(State);
+        
+            }
+
+            behaviorsObj.prototype.selfCollide(State, State.waveEnemies);
+            
+            State.waveEnemies.forEachAlive(function(enemy){
+    
+                behaviorsObj.prototype.bodyCollide(State, enemy);
+                behaviorsObj.prototype.bodyOverlap(State, enemy, [State.player, State.mercs]);
+                behaviorsObj.prototype.enemyMove(State, enemy);
+                if(enemy.gun){
+                    behaviorsObj.prototype.bulletCollide(State, enemy.bullets);
+                    behaviorsObj.prototype.bulletOverlap(State, enemy.bullets, [State.player, State.mercs]);
+                    behaviorsObj.prototype.shoot(State, enemy, State.player, [State.mercs]);
+                }
+            }); 
+        
+
+    },
+
+    increment: function(State) {
+
+        if(State.game.time.now > this.incrementTime){
+            this.incrementTime = State.game.time.now + 400;
+            if(State.wave * 10 > State.waveEnemies.length){
+                Enemy.prototype.create(State);
+                console.log('enemy');
+            }
+            else if((State.wave * 5) + (State.wave * 2) > State.waveEnemies.length){
+                PistolEnemy.prototype.create(State);
+                console.log('pistol enemy');
+            }
+            else if((State.wave * 5) + (State.wave * 2) + Math.floor(State.wave * .2) > State.waveEnemies.length){
+                ShotgunEnemy.prototype.create(State);
+                console.log('shot enemy');
+            }
+            else if((State.wave * 5) + (State.wave * 2) + Math.floor(State.wave * .2) + Math.floor(State.wave * .1) > State.waveEnemies.length){
+                RifleEnemy.prototype.create(State);
+                console.log('rifle enemy');
+            }
+            else if((State.wave * 5) + (State.wave * 2) + Math.floor(State.wave * .2) + Math.floor(State.wave * .1) == State.waveEnemies.length && State.wave % 5 == 0){
+                console.log("bossTime");
+                Boss.prototype.create(State);
+            }
+        }
 
     }
 
 };
 
-function waveCreator(State) {
 
-    if(State.wave % 5 == 0 && State.wave > 0){
-        
-        
-        gameStatHandler.prototype.save(State);
-        State.game.state.start('levelHouse');
-
-    }
-    else if(State.wave % 5 == 4 && State.wave > 0){
-
-        
-        Enemies.prototype.create(State);
-        ShotgunEnemies.prototype.create(State);
-        PistolEnemies.prototype.create(State);
-        RifleEnemies.prototype.create(State);
-        Boss.prototype.create(State);
-
-
-    }
-    else{
-
-        
-        Enemies.prototype.create(State);
-        ShotgunEnemies.prototype.create(State);
-        PistolEnemies.prototype.create(State);
-        RifleEnemies.prototype.create(State);
-
-    }
-
-};
-
-function waveUpdator(State) {
-    
-    if(State.wave % 5 == 0 && State.wave > 0){
-        Boss.prototype.update(State);
-    }
-    Enemies.prototype.update(State);
-    ShotgunEnemies.prototype.update(State);
-    PistolEnemies.prototype.update(State);
-    RifleEnemies.prototype.update(State);
-    
-};

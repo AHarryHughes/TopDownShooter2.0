@@ -6,16 +6,18 @@ gameStatHandler.prototype = {
 
     create: function() {
 
+        this.wave = 5;
         this.playerXP = 1;
         this.playerLevel = 1;
         this.mercsAmount = 1;
         this.currency = 1;
-        this.towersAmount = 1;
+        this.towersAmount = 5;
 
     },
 
     save: function(State) {
 
+        this.wave = State.wave;
         this.playerXP = State.player.playerXP;
         this.playerLevel = State.player.playerLevel;
         if(State.mercs){
@@ -24,7 +26,7 @@ gameStatHandler.prototype = {
         else{
             this.mercsAmount = 0;
         }
-        this.towersAmount = State.player.currency;
+        this.currency = State.player.currency;
 
     }
 

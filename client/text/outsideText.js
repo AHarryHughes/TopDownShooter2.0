@@ -32,7 +32,7 @@ outsideText.prototype = {
         State.text.waveText.text = 'Wave: ' + State.wave;
         State.text.mercText.text = 'Mercs: ' + (State.mercs.length - State.mercs.countDead()) + "/" + State.mercs.length;
         State.text.currencyText.text = 'Currency: ' + State.player.currency;
-        if(State.wave%5 == 0 && State.wave > 0){
+        if((this.wave * 10) + (this.wave * 5) + Math.floor(this.wave * .35) + Math.floor(this.wave * .2) + 1 == State.waveEnemies.length){
             State.text.bossText.text = 'Boss Health: ' + State.boss.health + "/" + State.boss.maxHealth;
         }else{
             State.text.bossText.text = '';

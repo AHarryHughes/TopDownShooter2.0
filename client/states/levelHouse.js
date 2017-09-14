@@ -23,9 +23,12 @@ LevelHouse.prototype = {
     update: function () {
        Player.prototype.updateHouse(this);
 
+       insideText.prototype.update(this);
+
        NPC.prototype.update(this);
 
         if (Phaser.Rectangle.containsPoint(this.map.exitRect, this.player.position)) {
+            waveHandler.prototype.beenInHouse = true;
             this.game.state.start('levelOutside');
         }
     }

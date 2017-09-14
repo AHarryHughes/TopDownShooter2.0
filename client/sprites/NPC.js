@@ -4,7 +4,7 @@ NPC.prototype = {
 
     create: function(State){
 
-        let npc = game.add.sprite( 150, 50, 'flashlight-enemy');
+        let npc = game.add.sprite( State.map.entrance.x, State.map.entrance.y - 200, 'flashlight-enemy');
         npc.tint = 0xffff00;
         npc.anchor.set(0.5);
         npc.scale.set(0.2);
@@ -20,28 +20,28 @@ NPC.prototype = {
 
     update: function(State){
 
+        State.npc.rotation = State.game.physics.arcade.angleToXY(State.npc, State.player.x, State.player.y);
         State.game.physics.arcade.overlap(State.npc, State.player, this.buyStuff());
 
     },
 
-    buyStuff: function(npc, player, State){
+    buyStuff: function(npc, player){
 
-        this.createButton(State.game,"Mercs: 50 currency",game.world.centerX,game.world.centerY +32, 300, 100, function(){
-            if(State.player.currency >= 50){
+        this.createButton(game,"Mercs: 500 currency",game.world.centerX,game.world.centerY +32, 300, 100, function(){
+            if(gameStatHandler.prototype.currency >= 500){
                 gameStatHandler.prototype.mercsAmount += 1;
+                gameStatHandler.prototype.currency -= 500;
             }
         });
-        this.createButton(State.game,"Towers: 25 currency",game.world.centerX,game.world.centerY +110, 300, 100, function(){
-            if(State.player.currency >= 25){
+        this.createButton(game,"Towers: 250 currency",game.world.centerX,game.world.centerY +110, 300, 100, function(){
+            if(gameStatHandler.prototype.currency >= 250){
                 gameStatHandler.prototype.towersAmount += 1;
+                gameStatHandler.prototype.currency -= 250;
             }
         });
-        this.createButton(State.game,"Done",game.world.centerX,game.world.centerY +182, 300, 100, function(){
-            this.buttons.forEachAlive(
-                function(button){
-                    button.destroy();
-                }
-            );
+        this.createButton(game,"Back to the fight!!!",game.world.centerX,game.world.centerY +182, 300, 100, function(){
+            gameStatHandler.prototype.wave += 1;
+            game.state.start('levelOutside');
         });
 
     },
@@ -49,7 +49,7 @@ NPC.prototype = {
     createButton: function(game,string,x,y,width,height,callback){
         var button1 = game.add.button(x,y,'button',callback,game,2,1,0);
         this.buttons = game.add.group();
-        buttons.add(button1);
+        this.buttons.add(button1);
         button1.anchor.setTo(0.5,0.5);
         button1.width = width;
         button1.height = height;

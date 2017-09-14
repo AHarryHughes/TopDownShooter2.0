@@ -6,7 +6,7 @@ Preloader = function () {
 
 Preloader.prototype.preload = function () {
     var blackURI = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAIAAABvrngfAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAANSURBVBhXY6AzYGAAAAByAAHo7e7HAAAAAElFTkSuQmCC';
-    var fireFilter = 'https://cdn.rawgit.com/photonstorm/phaser/master/v2/filters/Fire.js';
+    
 
 
     this.load.tilemap('outside', './client/assets/TMX/BETA-MAP/outside-beta.json', null, Phaser.Tilemap.TILED_JSON);
@@ -33,7 +33,6 @@ Preloader.prototype.preload = function () {
     this.load.image('fog-of-war', blackURI);
 
 
-    this.load.script('filter', fireFilter);
 };
 
 Preloader.prototype.create = function () {

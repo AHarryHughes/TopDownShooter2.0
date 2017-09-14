@@ -37,10 +37,10 @@ Merc.prototype = {
         State.mercs.forEachAlive(function(merc){
 
             behaviorsObj.prototype.bodyCollide(State, merc);
-            behaviorsObj.prototype.bodyOverlap(State, merc, [State.boss, State.enemies, State.shotgunEnemies, State.pistolEnemies, State.rifleEnemies]);
+            behaviorsObj.prototype.bodyOverlap(State, merc, [State.waveEnemies]);
             behaviorsObj.prototype.bulletCollide(State, merc.bullets);
-            behaviorsObj.prototype.bulletOverlap(State, merc.bullets, [State.boss, State.enemies, State.shotgunEnemies, State.pistolEnemies, State.rifleEnemies]);
-            behaviorsObj.prototype.shoot(State, merc, State.boss, [State.enemies, State.shotgunEnemies, State.pistolEnemies, State.rifleEnemies]);
+            behaviorsObj.prototype.bulletOverlap(State, merc.bullets, [State.waveEnemies]);
+            behaviorsObj.prototype.shoot(State, merc, State.boss, [State.waveEnemies]);
             behaviorsObj.prototype.mercMove(State, merc);
 
         });

@@ -60,7 +60,7 @@ Player.prototype = {
 
         behaviorsObj.prototype.bodyCollide(State, State.player);
         behaviorsObj.prototype.bulletCollide(State, State.player.bullets);
-        behaviorsObj.prototype.bulletOverlap(State, State.player.bullets, [State.boss, State.shotgunEnemies, State.enemies, State.pistolEnemies, State.rifleEnemies]);
+        behaviorsObj.prototype.bulletOverlap(State, State.player.bullets, [State.waveEnemies]);
         behaviorsObj.prototype.playerInput(State);
         statHandler(State);
 

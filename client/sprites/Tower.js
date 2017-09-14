@@ -48,8 +48,8 @@ Tower.prototype = {
                 State.towers.forEachAlive(function(tower){
         
                     behaviorsObj.prototype.bulletCollide(State, tower.bullets);
-                    behaviorsObj.prototype.bulletOverlap(State, tower.bullets, [State.boss, State.enemies, State.shotgunEnemies, State.pistolEnemies, State.rifleEnemies]);
-                    behaviorsObj.prototype.shoot(State, tower, State.boss, [State.enemies, State.shotgunEnemies, State.pistolEnemies, State.rifleEnemies]);
+                    behaviorsObj.prototype.bulletOverlap(State, tower.bullets, [State.waveEnemies]);
+                    behaviorsObj.prototype.shoot(State, tower, State.boss, [State.waveEnemies]);
         
                 });
         
