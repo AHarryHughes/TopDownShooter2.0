@@ -125,7 +125,7 @@ application.post('/signup', async (request, response) => {
 
 });
 
-server.listen(9000,function(){ // Listens to port 8081
+server.listen(9000,function(){ 
     console.log('Listening on '+server.address().port);
 });
 

@@ -3,7 +3,7 @@ function Boss () {}
 Boss.prototype = {
 
     create: function(State){
-
+        //B
         let spawnPoint = State.map.bossSpawn;
         let boss = State.waveEnemies.create(spawnPoint.x, spawnPoint.y, 'flashlight-enemy');
         boss.MOVE_SPEED = State.player.Move_SPEED - 100;
