@@ -65,24 +65,20 @@ waveHandler.prototype = {
 
         if(State.game.time.now > this.incrementTime){
             this.incrementTime = State.game.time.now + 400;
-            if(State.wave * 10 > State.waveEnemies.length){
+            if(State.wave * 5 > State.waveEnemies.length){
                 Enemy.prototype.create(State);
-                console.log('enemy');
             }
             else if((State.wave * 5) + (State.wave * 2) > State.waveEnemies.length){
                 PistolEnemy.prototype.create(State);
-                console.log('pistol enemy');
             }
             else if((State.wave * 5) + (State.wave * 2) + Math.floor(State.wave * .2) > State.waveEnemies.length){
                 ShotgunEnemy.prototype.create(State);
-                console.log('shot enemy');
             }
             else if((State.wave * 5) + (State.wave * 2) + Math.floor(State.wave * .2) + Math.floor(State.wave * .1) > State.waveEnemies.length){
                 RifleEnemy.prototype.create(State);
-                console.log('rifle enemy');
             }
             else if((State.wave * 5) + (State.wave * 2) + Math.floor(State.wave * .2) + Math.floor(State.wave * .1) == State.waveEnemies.length && State.wave % 5 == 0){
-                console.log("bossTime");
+               
                 Boss.prototype.create(State);
             }
         }

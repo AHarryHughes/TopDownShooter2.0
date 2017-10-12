@@ -27,16 +27,16 @@ NPC.prototype = {
 
     buyStuff: function(npc, player){
 
-        this.createButton(game,"Mercs: 500 currency",game.world.centerX,game.world.centerY +32, 300, 100, function(){
-            if(gameStatHandler.prototype.currency >= 500){
+        this.createButton(game,"Mercs: 5000 currency",game.world.centerX,game.world.centerY +32, 300, 100, function(){
+            if(gameStatHandler.prototype.currency >= 5000){
                 gameStatHandler.prototype.mercsAmount += 1;
-                gameStatHandler.prototype.currency -= 500;
+                gameStatHandler.prototype.currency -= 5000;
             }
         });
-        this.createButton(game,"Towers: 250 currency",game.world.centerX,game.world.centerY +110, 300, 100, function(){
-            if(gameStatHandler.prototype.currency >= 250){
+        this.createButton(game,"Towers: 2500 currency",game.world.centerX,game.world.centerY +110, 300, 100, function(){
+            if(gameStatHandler.prototype.currency >= 2500){
                 gameStatHandler.prototype.towersAmount += 1;
-                gameStatHandler.prototype.currency -= 250;
+                gameStatHandler.prototype.currency -= 2500;
             }
         });
         this.createButton(game,"Back to the fight!!!",game.world.centerX,game.world.centerY +182, 300, 100, function(){

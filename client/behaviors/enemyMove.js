@@ -6,8 +6,6 @@ behaviorsObj.prototype.enemyMove = function (State, enemy) {
     if (State.player.alive && game.physics.arcade.distanceBetween(State.player, enemy) <= 30) {
         enemy.animations.play('melee');
     }
-    else{
-        State.game.physics.arcade.moveToObject(enemy, State.player, enemy.MOVE_SPEED);
-        enemy.animations.play('move');
-    }
+    State.game.physics.arcade.moveToObject(enemy, State.player, enemy.MOVE_SPEED);
+    enemy.animations.play('move');
 };

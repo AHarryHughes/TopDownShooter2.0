@@ -5,6 +5,7 @@ LevelOutside.prototype = {
 
         create: function () {
 
+            
 
             outsideMap.prototype.create(this);
 
@@ -32,6 +33,8 @@ LevelOutside.prototype = {
 
         update: function () {
 
+            // console.log(this.game.input.activePointer.x);
+            // console.log(this.game.input.activePointer.y);
 
             outsideText.prototype.update(this);
 
